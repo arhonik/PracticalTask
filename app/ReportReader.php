@@ -16,21 +16,18 @@ class ReportReader
     public function readReportHeader(): \App\ReportHeader
     {
         $this->goToHeadersReport();
-
         return $this->createReportHeader();
     }
 
     public function readReportRecord(): \App\ReportRecord
     {
         $this->goToBodyReport();
-
         return $this->createReportRecord();
     }
 
     public function readReportChank($numberOfLines): array
     {
         $this->goToBodyReport();
-
         return $this->createArrayReportRecord($numberOfLines);
     }
 
@@ -69,14 +66,12 @@ class ReportReader
     private function createReportHeader(): \App\ReportHeader
     {
         $emptyReportHeader = new \App\ReportHeader();
-
         return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
     private function createReportRecord(): \App\ReportRecord
     {
         $emptyReportRecord = new \App\ReportRecord();
-        
         return $this->filingInObjectFromReportLine($emptyReportRecord);
     }
 
