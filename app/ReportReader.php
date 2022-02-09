@@ -13,10 +13,17 @@ class ReportReader
         $this->report = fopen($this->fullPathToReport, 'rt');
     }
 
-    public function readReportTitle(): array
+    public function readReportTitle(): \App\ReportRecord
     {
         rewind($this->report);
-        return fgetcsv($this->report, 0, ';');
+
+        $reportRecord = new \App\ReportRecord();
+        $data = fgetcsv($this->report, 0, ';');
+        foreach ($data as $key => $value) {
+            $reportRecord->$key = $value;
+        }
+
+        return $reportRecord;
     }
 
     public function readReportRecord(): array|bool
