@@ -37,12 +37,7 @@ class ReportReader
 
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
-            $reportRecord = new \App\ReportRecord();
-            $data = fgetcsv($this->report, 0, ';');
-            foreach ($data as $key => $value) {
-                $reportRecord->$key = $value;
-            }
-
+            $reportRecord = $this->createReportRecord();
             $arrayReportRecord[] = $reportRecord;
         }
 
