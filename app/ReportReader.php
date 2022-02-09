@@ -13,7 +13,7 @@ class ReportReader
         $this->report = fopen($this->fullPathToReport, 'rt');
     }
 
-    public function readReportTitle(): \App\ReportRecord
+    public function readReportHeader(): \App\ReportRecord
     {
         $this->jumpToTheBeginningOfTheFile();
 
