@@ -39,36 +39,6 @@ class ReportReader
         }
     }
 
-    private function goToBodyReport()
-    {
-        if ($this->isBeginningFile()) {
-            fgetcsv($this->report, 0, ';');
-        }
-    }
-
-    private function isBeginningFile(): bool
-    {
-        if (ftell($this->report) == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private function isNotEndingFile(): bool
-    {
-        if (feof($this->report)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private function goToHeadersReport()
-    {
-        rewind($this->report);
-    }
-
     private function createArrayReportRecord($numberOfLines): array
     {
         $arrayReportRecord = array();
@@ -106,6 +76,36 @@ class ReportReader
         }
 
         return $object;
+    }
+
+    private function goToBodyReport()
+    {
+        if ($this->isBeginningFile()) {
+            fgetcsv($this->report, 0, ';');
+        }
+    }
+
+    private function isBeginningFile(): bool
+    {
+        if (ftell($this->report) == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function isNotEndingFile(): bool
+    {
+        if (feof($this->report)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private function goToHeadersReport()
+    {
+        rewind($this->report);
     }
 
     public function __destruct()
