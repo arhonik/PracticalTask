@@ -21,9 +21,10 @@ class ReportReader
 
     public function readReportRecord(): array|bool
     {
-        while (($data = fgetcsv($this->report, 0, ";")) !== FALSE) {
-                return $data;
+        if (ftell($this->report) == 0){
+            fgetcsv($this->report, 0, ';');
         }
+        return fgetcsv($this->report, 0, ';');
     }
 
     public function readReporttChank()
