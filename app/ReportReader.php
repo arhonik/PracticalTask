@@ -5,7 +5,8 @@ namespace App;
 class ReportReader
 {
     private string $fullPathToReport;
-    
+    private mixed $report;
+
     public function __construct($fullPathToReport)
     {
         $this->fullPathToReport = $fullPathToReport;
@@ -34,6 +35,6 @@ class ReportReader
 
     public function readReporttChank()
     {
-        
+
     }
 }
