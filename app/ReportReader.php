@@ -59,23 +59,17 @@ class ReportReader
     private function createReportHeader(): \App\ReportHeader
     {
         $reportHeader = new \App\ReportHeader();
-        $data = fgetcsv($this->report, 0, ';');
-        foreach ($data as $key => $value) {
-            $reportHeader->$key = $value;
-        }
+        $completedRecordHeader = $this->filingInObjectFromReportLine($reportHeader);
 
-        return $reportHeader;
+        return $completedRecordHeader;
     }
 
     private function createReportRecord(): \App\ReportRecord
     {
         $reportRecord = new \App\ReportRecord();
-        $data = fgetcsv($this->report, 0, ';');
-        foreach ($data as $key => $value) {
-            $reportRecord->$key = $value;
-        }
+        $completeReportRecord = $this->filingInObjectFromReportLine($reportRecord);
 
-        return $reportRecord;
+        return $completeReportRecord;
     }
 
     private function filingInObjectFromReportLine($object): mixed
