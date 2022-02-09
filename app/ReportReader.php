@@ -27,7 +27,7 @@ class ReportReader
         return fgetcsv($this->report, 0, ';');
     }
 
-    public function readReporttChank()
+    public function readReportChank()
     {
 
     }
