@@ -17,27 +17,21 @@ class ReportReader
     {
         $this->goToHeadersReport();
 
-        $reportHeader = $this->createReportHeader();
-
-        return $reportHeader;
+        return $this->createReportHeader();
     }
 
     public function readReportRecord(): \App\ReportRecord
     {
         $this->goToBodyReport();
 
-        $reportRecord = $this->createReportRecord();
-
-        return $reportRecord;
+        return $this->createReportRecord();
     }
 
     public function readReportChank($numberOfLines): array
     {
         $this->goToBodyReport();
 
-        $arrayReportRecord = $this->createArrayReportRecord($numberOfLines);
-
-        return $arrayReportRecord;
+        return $this->createArrayReportRecord($numberOfLines);
     }
 
     private function goToBodyReport()
@@ -75,17 +69,15 @@ class ReportReader
     private function createReportHeader(): \App\ReportHeader
     {
         $emptyReportHeader = new \App\ReportHeader();
-        $completedRecordHeader = $this->filingInObjectFromReportLine($emptyReportHeader);
 
-        return $completedRecordHeader;
+        return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
     private function createReportRecord(): \App\ReportRecord
     {
         $emptyReportRecord = new \App\ReportRecord();
-        $completeReportRecord = $this->filingInObjectFromReportLine($emptyReportRecord);
-
-        return $completeReportRecord;
+        
+        return $this->filingInObjectFromReportLine($emptyReportRecord);
     }
 
     private function filingInObjectFromReportLine($object): mixed
