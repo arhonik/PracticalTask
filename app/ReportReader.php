@@ -18,17 +18,11 @@ class ReportReader
         return fgetcsv($this->report, 0, ';');
     }
 
-    public function readReportRecord(): array
+    public function readReportRecord(): array|bool
     {
-        $report = fopen($this->fullPathToReport, 'rt');
-        $level = 0;
-        while (($data = fgetcsv($report, 0, ";")) !== FALSE) {
-            if ($level > 0) {
+        while (($data = fgetcsv($this->report, 0, ";")) !== FALSE) {
                 return $data;
-            }
-            $level++;
         }
-        fclose($report);
     }
 
     public function readReporttChank()
