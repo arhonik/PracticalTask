@@ -56,6 +56,17 @@ class ReportReader
         rewind($this->report);
     }
 
+    private function createReportHeader(): \App\ReportHeader
+    {
+        $reportHeader = new \App\ReportHeader();
+        $data = fgetcsv($this->report, 0, ';');
+        foreach ($data as $key => $value) {
+            $reportHeader->$key = $value;
+        }
+
+        return $reportHeader;
+    }
+
     private function createReportRecord(): \App\ReportRecord
     {
         $reportRecord = new \App\ReportRecord();
