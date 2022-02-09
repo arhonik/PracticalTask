@@ -64,6 +64,11 @@ class ReportReader
         }
     }
 
+    private function jumpToTheBeginningOfTheFile()
+    {
+        rewind($this->report);
+    }
+
     public function __destruct()
     {
         fclose($this->report);
