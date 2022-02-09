@@ -21,7 +21,15 @@ class ReportReader
 
     public function readReportRecord()
     {
-        
+        $report = fopen($this->fullPathToReport, 'rt');
+        $level = 0;
+        while (($data = fgetcsv($report, 0, ";")) !== FALSE) {
+            if ($level > 0) {
+                return $data;
+            }
+            $level++;
+        }
+        fclose($report);
     }
 
     public function readReporttChank()
