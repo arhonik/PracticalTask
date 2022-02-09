@@ -15,7 +15,7 @@ class ReportReader
 
     public function readReportTitle(): \App\ReportRecord
     {
-       $this->jumpToTheBeginningOfTheFile();
+        $this->jumpToTheBeginningOfTheFile();
 
         $reportRecord = new \App\ReportRecord();
         $data = fgetcsv($this->report, 0, ';');
