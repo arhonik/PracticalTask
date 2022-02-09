@@ -22,20 +22,20 @@ class ReportReader
     public function readReportRecord(): \App\ReportRecord|bool
     {
         $this->goToBodyReport();
-        if ($this->isEndingFile()) {
-            return false;
-        } else {
+        if ($this->isNotEndingFile()) {
             return $this->createReportRecord();
+        } else {
+            return false;
         }
     }
 
     public function readReportChank($numberOfLines): array|bool
     {
         $this->goToBodyReport();
-        if ($this->isEndingFile()) {
-            return false;
-        } else {
+        if ($this->isNotEndingFile()) {
             return $this->createArrayReportRecord($numberOfLines);
+        } else {
+            return false;
         }
     }
 
@@ -55,12 +55,12 @@ class ReportReader
         }
     }
 
-    private function isEndingFile(): bool
+    private function isNotEndingFile(): bool
     {
         if (feof($this->report)) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -90,11 +90,11 @@ class ReportReader
 
     private function createReportRecord(): \App\ReportRecord|bool
     {
-        if ($this->isEndingFile()) {
-            return false;
-        } else {
+        if ($this->isNotEndingFile()) {
             $emptyReportRecord = new \App\ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
+        } else {
+            return false;
         }
     }
 
