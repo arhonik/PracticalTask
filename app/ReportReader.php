@@ -19,7 +19,7 @@ class ReportReader
         return $data;
     }
 
-    public function readReportRecord()
+    public function readReportRecord(): array
     {
         $report = fopen($this->fullPathToReport, 'rt');
         $level = 0;
