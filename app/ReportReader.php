@@ -10,6 +10,7 @@ class ReportReader
     public function __construct($fullPathToReport)
     {
         $this->fullPathToReport = $fullPathToReport;
+        $this->report = fopen($this->fullPathToReport, 'rt');
     }
 
     public function readReportTitle(): array
