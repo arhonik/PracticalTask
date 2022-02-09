@@ -56,6 +56,17 @@ class ReportReader
         rewind($this->report);
     }
 
+    private function createArrayReportRecord($numberOfLines): array
+    {
+        $arrayReportRecord = array();
+        for ($i = 0; $i < $numberOfLines; $i++) {
+            $reportRecord = $this->createReportRecord();
+            $arrayReportRecord[] = $reportRecord;
+        }
+
+        return $arrayReportRecord;
+    }
+
     private function createReportHeader(): \App\ReportHeader
     {
         $emptyReportHeader = new \App\ReportHeader();
