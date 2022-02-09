@@ -15,6 +15,7 @@ class ReportReader
 
     public function readReportTitle(): array
     {
+        rewind($this->report);
         return fgetcsv($this->report, 0, ';');
     }
 
