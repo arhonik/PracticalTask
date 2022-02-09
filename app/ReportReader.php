@@ -69,6 +69,17 @@ class ReportReader
         rewind($this->report);
     }
 
+    private function createReportRecord(): \App\ReportRecord
+    {
+        $reportRecord = new \App\ReportRecord();
+        $data = fgetcsv($this->report, 0, ';');
+        foreach ($data as $key => $value) {
+            $reportRecord->$key = $value;
+        }
+
+        return $reportRecord;
+    }
+
     public function __destruct()
     {
         fclose($this->report);
