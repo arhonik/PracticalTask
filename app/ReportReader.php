@@ -11,9 +11,11 @@ class ReportReader
         $this->fullPathToReport = $fullPathToReport;
     }
 
-    public function readReportTitle()
+    public function readReportTitle(): array
     {
-        
+        $report = fopen($this->fullPathToReport, 'rt');
+        $data = fgetcsv($report, 0, ';');
+        return $data;
     }
 
     public function readReportRecord()
