@@ -19,10 +19,14 @@ class ReportReader
         return $this->createReportHeader();
     }
 
-    public function readReportRecord(): \App\ReportRecord
+    public function readReportRecord(): \App\ReportRecord|bool
     {
         $this->goToBodyReport();
-        return $this->createReportRecord();
+        if ($this->isEndingFile()) {
+            return false;
+        } else {
+            return $this->createReportRecord();
+        }
     }
 
     public function readReportChank($numberOfLines): array
