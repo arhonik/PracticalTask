@@ -29,4 +29,9 @@ class ReportReader
     {
 
     }
+
+    public function __destruct()
+    {
+        fclose($this->report);
+    }
 }
