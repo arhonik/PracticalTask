@@ -47,6 +47,15 @@ class ReportReader
         }
     }
 
+    private function isEndingFile(): bool
+    {
+        if (feof($this->report)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private function goToHeadersReport()
     {
         rewind($this->report);
