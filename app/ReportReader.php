@@ -15,7 +15,7 @@ class ReportReader
 
     public function readReportHeader(): \App\ReportHeader
     {
-        $this->jumpToTheBeginningOfTheFile();
+        $this->goToHeaders();
 
         $reportHeader = $this->createReportHeader();
 
@@ -51,7 +51,7 @@ class ReportReader
         }
     }
 
-    private function jumpToTheBeginningOfTheFile()
+    private function goToHeaders()
     {
         rewind($this->report);
     }
