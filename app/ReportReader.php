@@ -15,7 +15,7 @@ class ReportReader
 
     public function readReportHeader(): \App\ReportHeader
     {
-        $this->goToHeaders();
+        $this->goToHeadersReport();
 
         $reportHeader = $this->createReportHeader();
 
@@ -24,7 +24,7 @@ class ReportReader
 
     public function readReportRecord(): \App\ReportRecord
     {
-        $this->checkingForTheBeginningOfFile();
+        $this->goToBodyReport();
 
         $reportRecord = $this->createReportRecord();
 
@@ -33,7 +33,7 @@ class ReportReader
 
     public function readReportChank($numberOfLines): array
     {
-        $this->checkingForTheBeginningOfFile();
+        $this->goToBodyReport();
 
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
@@ -44,14 +44,14 @@ class ReportReader
         return $arrayReportRecord;
     }
 
-    private function checkingForTheBeginningOfFile()
+    private function goToBodyReport()
     {
         if (ftell($this->report) == 0){
             fgetcsv($this->report, 0, ';');
         }
     }
 
-    private function goToHeaders()
+    private function goToHeadersReport()
     {
         rewind($this->report);
     }
