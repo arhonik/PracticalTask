@@ -78,6 +78,16 @@ class ReportReader
         return $reportRecord;
     }
 
+    private function filingInObjectFromReportLine($object): mixed
+    {
+        $data = fgetcsv($this->report, 0, ';');
+        foreach ($data as $key => $value) {
+            $object->$key = $value;
+        }
+
+        return $object;
+    }
+
     public function __destruct()
     {
         fclose($this->report);
