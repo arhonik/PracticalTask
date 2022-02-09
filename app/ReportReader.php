@@ -17,9 +17,9 @@ class ReportReader
     {
         $this->jumpToTheBeginningOfTheFile();
 
-        $reportRecord = $this->createReportHeader();
+        $reportHeader = $this->createReportHeader();
 
-        return $reportRecord;
+        return $reportHeader;
     }
 
     public function readReportRecord(): \App\ReportRecord
