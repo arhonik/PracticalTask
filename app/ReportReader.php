@@ -15,6 +15,7 @@ class ReportReader
     {
         $report = fopen($this->fullPathToReport, 'rt');
         $data = fgetcsv($report, 0, ';');
+        fclose($report);
         return $data;
     }
 
