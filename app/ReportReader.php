@@ -35,11 +35,7 @@ class ReportReader
     {
         $this->goToBodyReport();
 
-        $arrayReportRecord = array();
-        for ($i = 0; $i < $numberOfLines; $i++) {
-            $reportRecord = $this->createReportRecord();
-            $arrayReportRecord[] = $reportRecord;
-        }
+        $arrayReportRecord = $this->createArrayReportRecord($numberOfLines);
 
         return $arrayReportRecord;
     }
