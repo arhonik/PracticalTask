@@ -28,9 +28,7 @@ class ReportReader
 
     public function readReportRecord(): \App\ReportRecord
     {
-        if (ftell($this->report) == 0){
-            fgetcsv($this->report, 0, ';');
-        }
+        $this->checkingForTheBeginningOfFile();
 
         $reportRecord = new \App\ReportRecord();
         $data = fgetcsv($this->report, 0, ';');
@@ -43,9 +41,7 @@ class ReportReader
 
     public function readReportChank($numberOfLines): array
     {
-        if (ftell($this->report) == 0){
-            fgetcsv($this->report, 0, ';');
-        }
+        $this->checkingForTheBeginningOfFile();
 
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
