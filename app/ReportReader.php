@@ -61,6 +61,13 @@ class ReportReader
         return $arrayReportRecord;
     }
 
+    private function checkingForTheBeginningOfFile()
+    {
+        if (ftell($this->report) == 0){
+            fgetcsv($this->report, 0, ';');
+        }
+    }
+
     public function __destruct()
     {
         fclose($this->report);
