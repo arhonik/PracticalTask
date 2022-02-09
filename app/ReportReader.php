@@ -26,12 +26,19 @@ class ReportReader
         return $reportRecord;
     }
 
-    public function readReportRecord(): array|bool
+    public function readReportRecord(): \App\ReportRecord
     {
         if (ftell($this->report) == 0){
             fgetcsv($this->report, 0, ';');
         }
-        return fgetcsv($this->report, 0, ';');
+
+        $reportRecord = new \App\ReportRecord();
+        $data = fgetcsv($this->report, 0, ';');
+        foreach ($data as $key => $value) {
+            $reportRecord->$key = $value;
+        }
+
+        return $reportRecord;
     }
 
     public function readReportChank($numberOfLines)
