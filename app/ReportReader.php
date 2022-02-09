@@ -27,9 +27,17 @@ class ReportReader
         return fgetcsv($this->report, 0, ';');
     }
 
-    public function readReportChank()
+    public function readReportChank($numberOfLines)
     {
+        if (ftell($this->report) == 0){
+            fgetcsv($this->report, 0, ';');
+        }
+        $arrayReportRecord = array();
+        for ($i = 0; $i < $numberOfLines; $i++) {
+            $arrayReportRecord[] = fgetcsv($this->report, 0, ';');
+        }
 
+        return $arrayReportRecord;
     }
 
     public function __destruct()
