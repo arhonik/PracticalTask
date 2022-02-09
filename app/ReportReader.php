@@ -41,14 +41,21 @@ class ReportReader
         return $reportRecord;
     }
 
-    public function readReportChank($numberOfLines)
+    public function readReportChank($numberOfLines): array
     {
         if (ftell($this->report) == 0){
             fgetcsv($this->report, 0, ';');
         }
+
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
-            $arrayReportRecord[] = fgetcsv($this->report, 0, ';');
+            $reportRecord = new \App\ReportRecord();
+            $data = fgetcsv($this->report, 0, ';');
+            foreach ($data as $key => $value) {
+                $reportRecord->$key = $value;
+            }
+
+            $arrayReportRecord[] = $reportRecord;
         }
 
         return $arrayReportRecord;
