@@ -42,7 +42,7 @@ class ReportReader
 
     private function goToBodyReport()
     {
-        if (ftell($this->report) == 0){
+        if ($this->isBeginningFile()) {
             fgetcsv($this->report, 0, ';');
         }
     }
