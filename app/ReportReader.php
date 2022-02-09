@@ -17,11 +17,7 @@ class ReportReader
     {
         $this->jumpToTheBeginningOfTheFile();
 
-        $reportRecord = new \App\ReportRecord();
-        $data = fgetcsv($this->report, 0, ';');
-        foreach ($data as $key => $value) {
-            $reportRecord->$key = $value;
-        }
+        $reportRecord = $this->createReportRecord();
 
         return $reportRecord;
     }
@@ -30,11 +26,7 @@ class ReportReader
     {
         $this->checkingForTheBeginningOfFile();
 
-        $reportRecord = new \App\ReportRecord();
-        $data = fgetcsv($this->report, 0, ';');
-        foreach ($data as $key => $value) {
-            $reportRecord->$key = $value;
-        }
+        $reportRecord = $this->createReportRecord();
 
         return $reportRecord;
     }
