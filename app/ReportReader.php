@@ -29,10 +29,14 @@ class ReportReader
         }
     }
 
-    public function readReportChank($numberOfLines): array
+    public function readReportChank($numberOfLines): array|bool
     {
         $this->goToBodyReport();
-        return $this->createArrayReportRecord($numberOfLines);
+        if ($this->isEndingFile()) {
+            return false;
+        } else {
+            return $this->createArrayReportRecord($numberOfLines);
+        }
     }
 
     private function goToBodyReport()
@@ -70,7 +74,9 @@ class ReportReader
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
             $reportRecord = $this->createReportRecord();
-            $arrayReportRecord[] = $reportRecord;
+            if ($reportRecord) {
+                $arrayReportRecord[] = $reportRecord;
+            }
         }
 
         return $arrayReportRecord;
@@ -82,10 +88,14 @@ class ReportReader
         return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
-    private function createReportRecord(): \App\ReportRecord
+    private function createReportRecord(): \App\ReportRecord|bool
     {
-        $emptyReportRecord = new \App\ReportRecord();
-        return $this->filingInObjectFromReportLine($emptyReportRecord);
+        if ($this->isEndingFile()) {
+            return false;
+        } else {
+            $emptyReportRecord = new \App\ReportRecord();
+            return $this->filingInObjectFromReportLine($emptyReportRecord);
+        }
     }
 
     private function filingInObjectFromReportLine($object): mixed
