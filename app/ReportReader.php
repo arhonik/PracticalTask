@@ -13,11 +13,11 @@ class ReportReader
         $this->report = fopen($this->fullPathToReport, 'rt');
     }
 
-    public function readReportHeader(): \App\ReportRecord
+    public function readReportHeader(): \App\ReportHeader
     {
         $this->jumpToTheBeginningOfTheFile();
 
-        $reportRecord = $this->createReportRecord();
+        $reportRecord = $this->createReportHeader();
 
         return $reportRecord;
     }
