@@ -58,16 +58,16 @@ class ReportReader
 
     private function createReportHeader(): \App\ReportHeader
     {
-        $reportHeader = new \App\ReportHeader();
-        $completedRecordHeader = $this->filingInObjectFromReportLine($reportHeader);
+        $emptyReportHeader = new \App\ReportHeader();
+        $completedRecordHeader = $this->filingInObjectFromReportLine($emptyReportHeader);
 
         return $completedRecordHeader;
     }
 
     private function createReportRecord(): \App\ReportRecord
     {
-        $reportRecord = new \App\ReportRecord();
-        $completeReportRecord = $this->filingInObjectFromReportLine($reportRecord);
+        $emptyReportRecord = new \App\ReportRecord();
+        $completeReportRecord = $this->filingInObjectFromReportLine($emptyReportRecord);
 
         return $completeReportRecord;
     }
