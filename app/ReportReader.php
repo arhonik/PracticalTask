@@ -4,8 +4,7 @@ namespace App;
 
 class ReportReader
 {
-    private string $fullPathToReport;
-    private mixed $report;
+    private \App\Report $report;
 
     public function __construct($fullPathToReport)
     {
