@@ -19,7 +19,7 @@ class Report
     public function goToBodyReport()
     {
         if ($this->isBeginningFile()) {
-            fgetcsv($this->report, 0, ';');
+            $this->goToNextLineReport();
         }
     }
 
