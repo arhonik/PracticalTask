@@ -8,7 +8,11 @@ class Report
 
     public function __construct($fullPathToReport)
     {
-        $this->report = fopen($fullPathToReport, 'rt');
+        try {
+            $this->report = fopen($fullPathToReport, 'rt');
+        } catch (\Exception $e) {
+            echo 'Exceptions caught:' . $e->getMessage();
+        }
     }
 
     public function goToHeadersReport()
