@@ -18,7 +18,18 @@ class Report
 
     public function goToBodyReport()
     {
+        if ($this->isBeginningFile()) {
+            fgetcsv($this->report, 0, ';');
+        }
+    }
 
+    private function isBeginningFile(): bool
+    {
+        if (ftell($this->report) == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getPointerPositionReport()
