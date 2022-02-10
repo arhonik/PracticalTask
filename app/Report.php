@@ -44,7 +44,7 @@ class Report
 
     private function goToNextLineReport()
     {
-
+        fgetcsv($this->report, 0, ';');
     }
 
     public function __destruct()
