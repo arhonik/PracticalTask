@@ -30,12 +30,12 @@ class Report
         fclose($this->report);
     }
 
-    public function goToReportHeaders()
+    public function goToHeaders()
     {
         rewind($this->report);
     }
 
-    public function ifNeedGoToBodyFromHeaderReport()
+    public function ifNeedGoToBodyFromHeader()
     {
         if ($this->isBeginningFile()) {
             $this->goToNextLineReport();
@@ -51,7 +51,7 @@ class Report
         }
     }
 
-    public function isNotEndingFile(): bool
+    public function isNotEnding(): bool
     {
         if (feof($this->report)) {
             return false;

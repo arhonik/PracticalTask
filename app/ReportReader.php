@@ -13,19 +13,19 @@ class ReportReader implements ReportReaderInterface
 
     public function getReportHeader(): \App\ReportLineInterface
     {
-        $this->report->goToReportHeaders();
+        $this->report->goToHeaders();
         return $this->createReportHeader();
     }
 
     public function getReportRecord(): \App\ReportLineInterface|bool
     {
-        $this->report->ifNeedGoToBodyFromHeaderReport();
+        $this->report->ifNeedGoToBodyFromHeader();
         return $this->createReportRecord();
     }
 
     public function getReportChunk(int $numberOfLines): array|bool
     {
-        $this->report->ifNeedGoToBodyFromHeaderReport();
+        $this->report->ifNeedGoToBodyFromHeader();
         return $this->createAnArrayOfReportRecords($numberOfLines);
     }
 
@@ -50,7 +50,7 @@ class ReportReader implements ReportReaderInterface
 
     private function createReportRecord(): \App\ReportRecord|bool
     {
-        if ($this->report->isNotEndingFile()) {
+        if ($this->report->isNotEnding()) {
             $emptyReportRecord = new \App\ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
         } else {
