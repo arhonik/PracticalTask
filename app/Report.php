@@ -62,6 +62,10 @@ class Report
 
     public function __destruct()
     {
-        fclose($this->report);
+        try {
+            fclose($this->report);
+        } catch (\Exception $e) {
+            echo 'Exceptions caught:' . $e->getMessage();
+        }
     }
 }
