@@ -65,9 +65,26 @@ class Report
         return ftell($this->report);
     }
 
-    public function getReportLine(): bool|array
+    public function getLine(): bool|array
     {
-        return fgetcsv($this->report, 0, ';');
+        try {
+            $reportLine = $this->getTheLineSafely();
+        } catch (\Exception $e) {
+            echo 'Exceptions caught: ' . $e->getMessage();
+            exit();
+
+        }
+        return $reportLine;
+    }
+
+    private function getTheLineSafely(): array
+    {
+        $reportLine = fgetcsv($this->report, 0, ';');
+        if ($reportLine == false) {
+            throw new \Exception('Report not available');
+        }
+
+        return $reportLine;
     }
 
     private function goToNextLineReport()

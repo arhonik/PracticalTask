@@ -60,7 +60,7 @@ class ReportReader implements ReportReaderInterface
 
     private function filingInObjectFromReportLine(mixed $object): mixed
     {
-        $lineReport = $this->report->getReportLine();
+        $lineReport = $this->report->getLine();
         if ($this->isFillReportLine($lineReport)) {
             foreach ($lineReport as $key => $value) {
                 $object->$key = $value;
