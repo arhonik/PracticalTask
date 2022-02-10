@@ -2,7 +2,7 @@
 
 namespace App;
 
-class ReportReader
+class ReportReader implements ReportReaderInterface
 {
     private \App\Report $report;
 
