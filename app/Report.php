@@ -32,6 +32,15 @@ class Report
         }
     }
 
+    public function isNotEndingFile(): bool
+    {
+        if (feof($this->report)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public function getPointerPositionReport(): bool|int
     {
         return ftell($this->report);
