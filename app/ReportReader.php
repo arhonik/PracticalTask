@@ -24,7 +24,7 @@ class ReportReader
         return $this->createReportRecord();
     }
 
-    public function readReportChank($numberOfLines): array|bool
+    public function readChunkReport($numberOfLines): array|bool
     {
         $this->report->goToBodyReport();
         return $this->createArrayReportRecord($numberOfLines);
