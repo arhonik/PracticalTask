@@ -60,7 +60,7 @@ class ReportReader
 
     private function filingInObjectFromReportLine($object): mixed
     {
-        $data = $this->report->getLneReport();
+        $data = $this->report->getLineReport();
         foreach ($data as $key => $value) {
             $object->$key = $value;
         }

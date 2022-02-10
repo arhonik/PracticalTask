@@ -65,7 +65,7 @@ class Report
         return ftell($this->report);
     }
 
-    public function getLneReport(): bool|array
+    public function getLineReport(): bool|array
     {
         return fgetcsv($this->report, 0, ';');
     }
