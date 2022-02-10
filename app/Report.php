@@ -9,10 +9,25 @@ class Report
     public function __construct($fullPathToReport)
     {
         try {
-            $this->report = fopen($fullPathToReport, 'rt');
+            $this->openReport($fullPathToReport);
         } catch (\Exception $e) {
-            echo 'Exceptions caught:' . $e->getMessage();
+            echo 'Exceptions caught: ' . $e->getMessage();
+            exit();
         }
+    }
+
+    private function openReport($fullPathToReport)
+    {
+        if (file_exists($fullPathToReport)) {
+            $this->report = fopen($fullPathToReport, 'rt');
+        } else {
+            throw new \Exception('Report not found');
+        }
+    }
+
+    private function closeReport()
+    {
+        fclose($this->report);
     }
 
     public function goToHeadersReport()
@@ -62,10 +77,6 @@ class Report
 
     public function __destruct()
     {
-        try {
-            fclose($this->report);
-        } catch (\Exception $e) {
-            echo 'Exceptions caught:' . $e->getMessage();
-        }
+        $this->closeReport();
     }
 }
