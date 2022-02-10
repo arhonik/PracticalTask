@@ -9,25 +9,24 @@ class ReportReader
 
     public function __construct($fullPathToReport)
     {
-        $this->fullPathToReport = $fullPathToReport;
-        $this->report = fopen($this->fullPathToReport, 'rt');
+        $this->report = new \App\Report($fullPathToReport);
     }
 
     public function readReportHeader(): \App\ReportHeader
     {
-        $this->goToHeadersReport();
+        $this->report->goToHeadersReport();
         return $this->createReportHeader();
     }
 
     public function readReportRecord(): \App\ReportRecord|bool
     {
-        $this->goToBodyReport();
+        $this->report->goToBodyReport();
         return $this->createReportRecord();
     }
 
     public function readReportChank($numberOfLines): array|bool
     {
-        $this->goToBodyReport();
+        $this->report->goToBodyReport();
         return $this->createArrayReportRecord($numberOfLines);
     }
 
@@ -62,28 +61,12 @@ class ReportReader
 
     private function filingInObjectFromReportLine($object): mixed
     {
-        $data = fgetcsv($this->report, 0, ';');
+        $data = $this->report->getLneReport();
         foreach ($data as $key => $value) {
             $object->$key = $value;
         }
 
         return $object;
-    }
-
-    private function goToBodyReport()
-    {
-        if ($this->isBeginningFile()) {
-            fgetcsv($this->report, 0, ';');
-        }
-    }
-
-    private function isBeginningFile(): bool
-    {
-        if (ftell($this->report) == 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     private function isNotEndingFile(): bool
@@ -93,15 +76,5 @@ class ReportReader
         } else {
             return true;
         }
-    }
-
-    private function goToHeadersReport()
-    {
-        rewind($this->report);
-    }
-
-    public function __destruct()
-    {
-        fclose($this->report);
     }
 }
