@@ -4,8 +4,11 @@ namespace App;
 
 class Report
 {
-    public function __construct()
+    private mixed $report;
+
+    public function __construct($fullPathToReport)
     {
+        $this->report = fopen($fullPathToReport, 'rt');
     }
 
     public function goToBodyReport()
