@@ -37,9 +37,9 @@ class Report
         return ftell($this->report);
     }
 
-    public function getLneReport()
+    public function getLneReport(): bool|array
     {
-
+        return fgetcsv($this->report, 0, ';');
     }
 
     private function goToNextLineReport()
