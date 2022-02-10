@@ -2,7 +2,7 @@
 
 namespace App;
 
-class ReportLine
+class ReportLine implements ReportLineInterface
 {
     private array $data = array();
 
