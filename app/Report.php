@@ -49,5 +49,6 @@ class Report
 
     public function __destruct()
     {
+        fclose($this->report);
     }
 }
