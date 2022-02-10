@@ -11,25 +11,25 @@ class ReportReader
         $this->report = new \App\Report($fullPathToReport);
     }
 
-    public function readReportHeader(): \App\ReportHeader
+    public function getReportHeader(): \App\ReportHeader
     {
         $this->report->goToHeadersReport();
         return $this->createReportHeader();
     }
 
-    public function readReportRecord(): \App\ReportRecord|bool
+    public function getReportRecord(): \App\ReportRecord|bool
     {
         $this->report->ifNeedGoToBodyFromHeaderReport();
         return $this->createReportRecord();
     }
 
-    public function readChunkReport(int $numberOfLines): array|bool
+    public function getReportChunk(int $numberOfLines): array|bool
     {
         $this->report->ifNeedGoToBodyFromHeaderReport();
-        return $this->createArrayReportRecord($numberOfLines);
+        return $this->createAnArrayOfReportRecords($numberOfLines);
     }
 
-    private function createArrayReportRecord(int $numberOfLines): array
+    private function createAnArrayOfReportRecords(int $numberOfLines): array
     {
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
