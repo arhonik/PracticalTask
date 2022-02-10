@@ -19,13 +19,13 @@ class ReportReader
 
     public function readReportRecord(): \App\ReportRecord|bool
     {
-        $this->report->goToBodyReport();
+        $this->report->ifNeedGoToBodyFromHeaderReport();
         return $this->createReportRecord();
     }
 
     public function readChunkReport($numberOfLines): array|bool
     {
-        $this->report->goToBodyReport();
+        $this->report->ifNeedGoToBodyFromHeaderReport();
         return $this->createArrayReportRecord($numberOfLines);
     }
 

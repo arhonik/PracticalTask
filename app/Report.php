@@ -16,7 +16,7 @@ class Report
         rewind($this->report);
     }
 
-    public function goToBodyReport()
+    public function ifNeedGoToBodyFromHeaderReport()
     {
         if ($this->isBeginningFile()) {
             $this->goToNextLineReport();
