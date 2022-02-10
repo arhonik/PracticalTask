@@ -11,12 +11,12 @@ class Report
         $this->report = fopen($fullPathToReport, 'rt');
     }
 
-    public function goToBodyReport()
+    public function goToHeadersReport()
     {
-
+        rewind($this->report);
     }
 
-    public function goToHeadersReport()
+    public function goToBodyReport()
     {
 
     }
