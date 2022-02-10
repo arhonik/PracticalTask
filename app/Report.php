@@ -25,16 +25,16 @@ class Report
 
     private function isBeginningFile(): bool
     {
-        if (ftell($this->report) == 0) {
+        if ($this->getPointerPositionReport() == 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function getPointerPositionReport()
+    public function getPointerPositionReport(): bool|int
     {
-
+        return ftell($this->report);
     }
 
     public function getLneReport()
