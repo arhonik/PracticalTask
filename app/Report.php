@@ -30,7 +30,7 @@ class Report
         fclose($this->report);
     }
 
-    public function goToHeadersReport()
+    public function goToReportHeaders()
     {
         rewind($this->report);
     }
@@ -65,7 +65,7 @@ class Report
         return ftell($this->report);
     }
 
-    public function getLineReport(): bool|array
+    public function getReportLine(): bool|array
     {
         return fgetcsv($this->report, 0, ';');
     }

@@ -13,7 +13,7 @@ class ReportReader
 
     public function getReportHeader(): \App\ReportHeader
     {
-        $this->report->goToHeadersReport();
+        $this->report->goToReportHeaders();
         return $this->createReportHeader();
     }
 
@@ -60,7 +60,7 @@ class ReportReader
 
     private function filingInObjectFromReportLine(mixed $object): mixed
     {
-        $lineReport = $this->report->getLineReport();
+        $lineReport = $this->report->getReportLine();
         if ($this->isNotEmptyReportLine($lineReport)) {
             foreach ($lineReport as $key => $value) {
                 $object->$key = $value;
