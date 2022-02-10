@@ -51,7 +51,7 @@ class ReportReader
 
     private function createReportRecord(): \App\ReportRecord|bool
     {
-        if ($this->isNotEndingFile()) {
+        if ($this->report->isNotEndingFile()) {
             $emptyReportRecord = new \App\ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
         } else {
@@ -67,14 +67,5 @@ class ReportReader
         }
 
         return $object;
-    }
-
-    private function isNotEndingFile(): bool
-    {
-        if (feof($this->report)) {
-            return false;
-        } else {
-            return true;
-        }
     }
 }
