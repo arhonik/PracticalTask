@@ -22,21 +22,13 @@ class ReportReader
     public function readReportRecord(): \App\ReportRecord|bool
     {
         $this->goToBodyReport();
-        if ($this->isNotEndingFile()) {
-            return $this->createReportRecord();
-        } else {
-            return false;
-        }
+        return $this->createReportRecord();
     }
 
     public function readReportChank($numberOfLines): array|bool
     {
         $this->goToBodyReport();
-        if ($this->isNotEndingFile()) {
-            return $this->createArrayReportRecord($numberOfLines);
-        } else {
-            return false;
-        }
+        return $this->createArrayReportRecord($numberOfLines);
     }
 
     private function createArrayReportRecord($numberOfLines): array
