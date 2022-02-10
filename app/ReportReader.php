@@ -69,4 +69,13 @@ class ReportReader
 
         return $object;
     }
+
+    private function isNotEmptyReportLine(mixed $lineReport): bool
+    {
+        if (is_array($lineReport) && count($lineReport) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
