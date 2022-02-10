@@ -61,7 +61,7 @@ class ReportReader implements ReportReaderInterface
     private function filingInObjectFromReportLine(mixed $object): mixed
     {
         $lineReport = $this->report->getReportLine();
-        if ($this->isNotEmptyReportLine($lineReport)) {
+        if ($this->isFillReportLine($lineReport)) {
             foreach ($lineReport as $key => $value) {
                 $object->$key = $value;
             }
@@ -70,7 +70,7 @@ class ReportReader implements ReportReaderInterface
         return $object;
     }
 
-    private function isNotEmptyReportLine(mixed $lineReport): bool
+    private function isFillReportLine(mixed $lineReport): bool
     {
         if (is_array($lineReport) && count($lineReport) > 0) {
             return true;
