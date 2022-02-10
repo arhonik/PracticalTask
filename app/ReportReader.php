@@ -23,13 +23,13 @@ class ReportReader
         return $this->createReportRecord();
     }
 
-    public function readChunkReport($numberOfLines): array|bool
+    public function readChunkReport(int $numberOfLines): array|bool
     {
         $this->report->ifNeedGoToBodyFromHeaderReport();
         return $this->createArrayReportRecord($numberOfLines);
     }
 
-    private function createArrayReportRecord($numberOfLines): array
+    private function createArrayReportRecord(int $numberOfLines): array
     {
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
@@ -58,7 +58,7 @@ class ReportReader
         }
     }
 
-    private function filingInObjectFromReportLine($object): mixed
+    private function filingInObjectFromReportLine(mixed $object): mixed
     {
         $lineReport = $this->report->getLineReport();
         if ($this->isNotEmptyReportLine($lineReport)) {
