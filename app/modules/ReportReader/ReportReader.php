@@ -1,23 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Modules\ReportReader;
 
 class ReportReader implements ReportReaderInterface
 {
-    private \App\Report $report;
+    private Report $report;
 
     public function __construct($fullPathToReport)
     {
-        $this->report = new \App\Report($fullPathToReport);
+        $this->report = new Report($fullPathToReport);
     }
 
-    public function getReportHeader(): \App\ReportLineInterface
+    public function getReportHeader(): ReportLineInterface
     {
         $this->report->goToHeaders();
         return $this->createReportHeader();
     }
 
-    public function getReportRecord(): \App\ReportLineInterface|bool
+    public function getReportRecord(): ReportLineInterface|bool
     {
         $this->report->ifNeedGoToBodyFromHeader();
         return $this->createReportRecord();
@@ -42,16 +42,16 @@ class ReportReader implements ReportReaderInterface
         return $arrayReportRecord;
     }
 
-    private function createReportHeader(): \App\ReportLineInterface
+    private function createReportHeader(): ReportLineInterface
     {
-        $emptyReportHeader = new \App\ReportHeader();
+        $emptyReportHeader = new ReportHeader();
         return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
-    private function createReportRecord(): \App\ReportRecord|bool
+    private function createReportRecord(): ReportRecord|bool
     {
         if ($this->report->isNotEnding()) {
-            $emptyReportRecord = new \App\ReportRecord();
+            $emptyReportRecord = new ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
         } else {
             return false;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modules\ReportReader;
 
 class Report
 {
