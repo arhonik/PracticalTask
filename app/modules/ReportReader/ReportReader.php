@@ -54,7 +54,7 @@ class ReportReader implements ReportReaderInterface
             $emptyReportRecord = new ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
         } else {
-            return false;
+            return true;
         }
     }
 
