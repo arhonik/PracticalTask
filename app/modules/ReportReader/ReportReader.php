@@ -51,23 +51,28 @@ class ReportReader implements ReportReaderInterface
     private function createReportRecord(): ?ReportRecord
     {
         if (!$this->report->isEnding()) {
-            $emptyReportRecord = new ReportRecord();
-            return $this->filingInObjectFromReportLine($emptyReportRecord);
+            return $this->filingInObjectFromReportLine();
         } else {
             return null;
         }
     }
 
-    private function filingInObjectFromReportLine(mixed $object): mixed
+    private function filingInObjectFromReportLine(): ?ReportRecord
     {
+        $reportRecord = null;
         $lineReport = $this->report->getLine();
         if ($this->isFillReportLine($lineReport)) {
-            foreach ($lineReport as $key => $value) {
-                $object->$key = $value;
-            }
+            $reportRecord = new ReportRecord();
+            $reportRecord->setId($lineReport[0]);
+            $reportRecord->setCustomerName($lineReport[1]);
+            $reportRecord->setProductName($lineReport[2]);
+            $reportRecord->setProductQuantity($lineReport[3]);
+            $reportRecord->setProductArticle($lineReport[4]);
+            $reportRecord->setProductWeight($lineReport[5]);
+            $reportRecord->setProductPrice($lineReport[6]);
         }
 
-        return $object;
+        return $reportRecord;
     }
 
     private function isFillReportLine(mixed $lineReport): bool
