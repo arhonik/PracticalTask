@@ -20,7 +20,7 @@ class ReportRecord implements ReportLineInterface
         $this->productQuantity = $reportLine[3];
         $this->productArticle = $reportLine[4];
         $this->productWeight = $reportLine[5];
-        $this->productWeight = $reportLine[6];
+        $this->productPrice = $reportLine[6];
     }
 
     public function getId(): string
