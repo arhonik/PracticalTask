@@ -4,29 +4,81 @@ namespace App\Modules\ReportReader;
 
 class ReportLine implements ReportLineInterface
 {
-    private array $data = array();
+    private string $id;
+    private string $customerName;
+    private string $productName;
+    private string $productQuantity;
+    private string $productArticle;
+    private string $productWeight;
+    private string $productPrice;
 
-    public function __set($name, $value)
+    public function setId(string $id): void
     {
-        $this->data[$name] = $value;
+        $this->id = $id;
     }
 
-    public function __get($name)
+    public function getId(): string
     {
-        if (array_key_exists($name, $this->data)) {
-            return $this->data[$name];
-        }
-
-        return null;
+        return $this->id;
     }
 
-    public function __isset($name)
+    public function setCustomerName(string $customerName): void
     {
-        return isset($this->data[$name]);
+        $this->customerName = $customerName;
     }
 
-    public function __unset($name)
+    public function getCustomerName(): string
     {
-        unset($this->data[$name]);
+        return $this->customerName;
+    }
+
+    public function setProductName(string $productName): void
+    {
+        $this->productName = $productName;
+    }
+
+    public function getProductName(): string
+    {
+        return $this->productName;
+    }
+
+    public function setProductQuantity(string $productQuantity): void
+    {
+        $this->productQuantity = $productQuantity;
+    }
+
+    public function getProductQuantity(): string
+    {
+        return $this->productQuantity;
+    }
+
+    public function setProductArticle(string $productArticle): void
+    {
+        $this->productArticle = $productArticle;
+    }
+
+    public function getProductArticle(): string
+    {
+        return $this->productArticle;
+    }
+
+    public function setProductWeight(string $productWeight): void
+    {
+        $this->productWeight = $productWeight;
+    }
+
+    public function getProductWeight(): string
+    {
+        return $this->productWeight;
+    }
+
+    public function setProductPrice(string $productPrice): void
+    {
+        $this->productPrice = $productPrice;
+    }
+
+    public function getProductPrice(): string
+    {
+        return $this->productPrice;
     }
 }
