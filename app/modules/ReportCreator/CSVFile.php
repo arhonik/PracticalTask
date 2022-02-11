@@ -21,7 +21,7 @@ class CSVFile
         if (file_exists($fullPathToReport)) {
             $this->report = fopen($fullPathToReport, 'rt');
         } else {
-            throw new \Exception('Report not found');
+            throw new \Exception('File not found');
         }
     }
 
@@ -33,7 +33,9 @@ class CSVFile
     public function ifNeedGoToHeaderFromBody()
     {
         if (!$this->isBeginningFile()) {
-            rewind($this->report);
+            if (!rewind($this->report)) {
+                throw new \Exception('File not available');
+            }
         }
     }
 
@@ -83,7 +85,7 @@ class CSVFile
     {
         $reportLine = fgetcsv($this->report, 0, ';');
         if ($reportLine == false) {
-            throw new \Exception('Report not available');
+            throw new \Exception('File not available');
         }
 
         return $reportLine;
