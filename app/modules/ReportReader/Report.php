@@ -32,7 +32,9 @@ class Report
 
     public function ifNeedGoToHeaderFromBody()
     {
-        rewind($this->report);
+        if (!$this->isBeginningFile()) {
+            rewind($this->report);
+        }
     }
 
     public function ifNeedGoToBodyFromHeader()
