@@ -44,7 +44,7 @@ class Report
 
     private function isBeginningFile(): bool
     {
-        if ($this->getPointerPositionReport() == 0) {
+        if ($this->getPointerPosition() == 0) {
             return true;
         } else {
             return false;
@@ -60,7 +60,7 @@ class Report
         }
     }
 
-    public function getPointerPositionReport(): bool|int
+    public function getPointerPosition(): bool|int
     {
         return ftell($this->report);
     }
