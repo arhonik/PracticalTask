@@ -4,11 +4,11 @@ namespace App\Modules\ReportCreator;
 
 class ReportCreator implements ReportReaderInterface
 {
-    private Report $report;
+    private CSVFile $report;
 
     public function __construct($fullPathToReport)
     {
-        $this->report = new Report($fullPathToReport);
+        $this->report = new CSVFile($fullPathToReport);
     }
 
     public function getHeader(): ?ReportLineInterface
