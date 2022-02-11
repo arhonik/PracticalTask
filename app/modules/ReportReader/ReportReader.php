@@ -70,12 +70,6 @@ class ReportReader implements ReportReaderInterface
         return $arrayReportRecord;
     }
 
-    private function createReportHeader(): ?ReportLineInterface
-    {
-        $emptyReportHeader = new ReportHeader();
-        return $this->filingInObjectFromReportLine($emptyReportHeader);
-    }
-
     private function createReportRecord(): ?ReportLineInterface
     {
         if (!$this->report->isEnding()) {
@@ -98,10 +92,10 @@ class ReportReader implements ReportReaderInterface
             $object->setProductWeight($lineReport[5]);
             $object->setProductPrice($lineReport[6]);
         } else {
-            $object = null;
+            $reportRecord = null;
         }
 
-        return $object;
+        return $reportRecord;
     }
 
     private function isFillReportLine(mixed $lineReport): bool
