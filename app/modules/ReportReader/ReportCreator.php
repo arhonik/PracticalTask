@@ -63,13 +63,4 @@ class ReportCreator implements ReportReaderInterface
 
         return $reportRecord;
     }
-
-    private function isFillReportLine(mixed $lineReport): bool
-    {
-        if (is_array($lineReport) && count($lineReport) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }
