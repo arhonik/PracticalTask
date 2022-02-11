@@ -55,7 +55,7 @@ class ReportCreator implements ReportReaderInterface
     private function filingInObjectFromReportLine(ReportLineInterface $object): ?ReportLineInterface
     {
         $reportLine = $this->report->getLine();
-        if ($this->isFillReportLine($reportLine)) {
+        if ($this->report->isFillLine($reportLine)) {
             $reportRecord = new ReportRecord($reportLine);
         } else {
             $reportRecord = null;
