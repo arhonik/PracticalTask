@@ -2,9 +2,9 @@
 
 spl_autoload_register(function ($class) {
 
-    $prefix = 'App\\';
+    $prefix = 'App\\Modules\\';
 
-    $base_dir = __DIR__ . '/app/';
+    $base_dir = __DIR__ . '/app/modules/';
 
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
