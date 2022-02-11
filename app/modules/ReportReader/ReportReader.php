@@ -11,7 +11,7 @@ class ReportReader implements ReportReaderInterface
         $this->report = new Report($fullPathToReport);
     }
 
-    public function getReportHeader(): ?ReportHeader
+    public function getReportHeader(): ?ReportLineInterface
     {
         $this->report->ifNeedGoToHeaderFromBody();
         $reportLine = $this->report->getLine();
@@ -31,7 +31,7 @@ class ReportReader implements ReportReaderInterface
         }
     }
 
-    public function getReportRecord(): ?ReportRecord
+    public function getReportRecord(): ?ReportLineInterface
     {
         $this->report->ifNeedGoToBodyFromHeader();
         $reportLine = $this->report->getLine();
