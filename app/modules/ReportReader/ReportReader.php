@@ -11,7 +11,7 @@ class ReportReader implements ReportReaderInterface
         $this->report = new Report($fullPathToReport);
     }
 
-    public function getReportHeader(): ReportLineInterface
+    public function getReportHeader(): ReportHeader
     {
         $this->report->goToHeaders();
         return $this->createReportHeader();
@@ -23,7 +23,7 @@ class ReportReader implements ReportReaderInterface
         return $this->createReportRecord();
     }
 
-    public function getReportChunk(int $numberOfLines): array|bool
+    public function getReportChunk(int $numberOfLines): ?array
     {
         $this->report->ifNeedGoToBodyFromHeader();
         return $this->createAnArrayOfReportRecords($numberOfLines);
