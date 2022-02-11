@@ -9,14 +9,14 @@ class CSVFile
     public function __construct($fullPathToReport)
     {
         try {
-            $this->openReport($fullPathToReport);
+            $this->open($fullPathToReport);
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
         }
     }
 
-    private function openReport($fullPathToReport)
+    private function open($fullPathToReport)
     {
         if (file_exists($fullPathToReport)) {
             $this->report = fopen($fullPathToReport, 'rt');
@@ -25,7 +25,7 @@ class CSVFile
         }
     }
 
-    private function closeReport()
+    private function close()
     {
         fclose($this->report);
     }
@@ -105,6 +105,6 @@ class CSVFile
 
     public function __destruct()
     {
-        $this->closeReport();
+        $this->close();
     }
 }
