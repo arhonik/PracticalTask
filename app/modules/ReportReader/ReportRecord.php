@@ -12,6 +12,17 @@ class ReportRecord implements ReportLineInterface
     private string $productWeight;
     private string $productPrice;
 
+    public function __construct(array $reportLine)
+    {
+        $this->setId($reportLine[0]);
+        $this->setCustomerName($reportLine[1]);
+        $this->setProductName($reportLine[2]);
+        $this->setProductQuantity($reportLine[3]);
+        $this->setProductArticle($reportLine[4]);
+        $this->setProductWeight($reportLine[5]);
+        $this->setProductPrice($reportLine[6]);
+    }
+
     public function setId(string $id): void
     {
         $this->id = $id;
