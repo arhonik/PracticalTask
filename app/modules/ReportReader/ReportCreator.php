@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\ReportReader;
+namespace App\Modules\ReportCreator;
 
 class ReportCreator implements ReportReaderInterface
 {
