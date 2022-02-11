@@ -17,7 +17,7 @@ class ReportReader implements ReportReaderInterface
         return $this->createReportHeader();
     }
 
-    public function getReportRecord(): ReportLineInterface|bool
+    public function getReportRecord(): ?ReportRecord
     {
         $this->report->ifNeedGoToBodyFromHeader();
         return $this->createReportRecord();
@@ -48,13 +48,13 @@ class ReportReader implements ReportReaderInterface
         return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
-    private function createReportRecord(): ReportRecord|bool
+    private function createReportRecord(): ?ReportRecord
     {
-        if ($this->report->isNotEnding()) {
+        if (!$this->report->isEnding()) {
             $emptyReportRecord = new ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportRecord);
         } else {
-            return true;
+            return null;
         }
     }
 

@@ -51,12 +51,12 @@ class Report
         }
     }
 
-    public function isNotEnding(): bool
+    public function isEnding(): bool
     {
         if (feof($this->report)) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 

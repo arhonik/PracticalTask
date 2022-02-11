@@ -6,7 +6,7 @@ interface ReportReaderInterface
 {
     public function getReportHeader(): ReportLineInterface;
 
-    public function getReportRecord(): ReportLineInterface|bool;
+    public function getReportRecord(): ?ReportRecord;
 
     public function getReportChunk(int $numberOfLines): array|bool;
 }
