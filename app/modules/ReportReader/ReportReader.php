@@ -82,15 +82,16 @@ class ReportReader implements ReportReaderInterface
 
     private function filingInObjectFromReportLine(ReportLineInterface $object): ?ReportLineInterface
     {
-        $lineReport = $this->report->getLine();
-        if ($this->isFillReportLine($lineReport)) {
-            $object->setId($lineReport[0]);
-            $object->setCustomerName($lineReport[1]);
-            $object->setProductName($lineReport[2]);
-            $object->setProductQuantity($lineReport[3]);
-            $object->setProductArticle($lineReport[4]);
-            $object->setProductWeight($lineReport[5]);
-            $object->setProductPrice($lineReport[6]);
+        $reportLine = $this->report->getLine();
+        if ($this->isFillReportLine($reportLine)) {
+            $reportRecord = new ReportRecord();
+            $reportRecord->setId($reportLine[0]);
+            $reportRecord->setCustomerName($reportLine[1]);
+            $reportRecord->setProductName($reportLine[2]);
+            $reportRecord->setProductQuantity($reportLine[3]);
+            $reportRecord->setProductArticle($reportLine[4]);
+            $reportRecord->setProductWeight($reportLine[5]);
+            $reportRecord->setProductPrice($reportLine[6]);
         } else {
             $reportRecord = null;
         }
