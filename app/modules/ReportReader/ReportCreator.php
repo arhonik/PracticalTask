@@ -14,13 +14,13 @@ class ReportCreator implements ReportReaderInterface
     public function getHeader(): ?ReportLineInterface
     {
         $this->report->ifNeedGoToHeaderFromBody();
-        return $this->createReportRecord();
+        return $this->createRecord();
     }
 
     public function getRecord(): ?ReportLineInterface
     {
         $this->report->ifNeedGoToBodyFromHeader();
-        return $this->createReportRecord();
+        return $this->createRecord();
     }
 
     public function getChunk(int $numberOfLines): ?array
@@ -33,7 +33,7 @@ class ReportCreator implements ReportReaderInterface
     {
         $arrayReportRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
-            $reportRecord = $this->createReportRecord();
+            $reportRecord = $this->createRecord();
             if ($reportRecord) {
                 $arrayReportRecord[] = $reportRecord;
             }
@@ -42,7 +42,7 @@ class ReportCreator implements ReportReaderInterface
         return $arrayReportRecord;
     }
 
-    private function createReportRecord(): ?ReportLineInterface
+    private function createRecord(): ?ReportLineInterface
     {
         if (!$this->report->isEnding()) {
             $emptyReportHeader = new ReportRecord();
