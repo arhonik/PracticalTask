@@ -13,7 +13,7 @@ class ReportReader implements ReportReaderInterface
 
     public function getReportHeader(): ?ReportHeader
     {
-        $this->report->goToHeaders();
+        $this->report->ifNeedGoToHeaderFromBody();
         return $this->createReportHeader();
     }
 
@@ -45,34 +45,35 @@ class ReportReader implements ReportReaderInterface
     private function createReportHeader(): ?ReportLineInterface
     {
         $emptyReportHeader = new ReportHeader();
-        return null;
+        return $this->filingInObjectFromReportLine($emptyReportHeader);
     }
 
-    private function createReportRecord(): ?ReportRecord
+    private function createReportRecord(): ?ReportLineInterface
     {
         if (!$this->report->isEnding()) {
-            return $this->filingInObjectFromReportLine();
+            $emptyReportHeader = new ReportRecord();
+            return $this->filingInObjectFromReportLine($emptyReportHeader);
         } else {
             return null;
         }
     }
 
-    private function filingInObjectFromReportLine(): ?ReportRecord
+    private function filingInObjectFromReportLine(ReportLineInterface $object): ?ReportLineInterface
     {
-        $reportRecord = null;
         $lineReport = $this->report->getLine();
         if ($this->isFillReportLine($lineReport)) {
-            $reportRecord = new ReportRecord();
-            $reportRecord->setId($lineReport[0]);
-            $reportRecord->setCustomerName($lineReport[1]);
-            $reportRecord->setProductName($lineReport[2]);
-            $reportRecord->setProductQuantity($lineReport[3]);
-            $reportRecord->setProductArticle($lineReport[4]);
-            $reportRecord->setProductWeight($lineReport[5]);
-            $reportRecord->setProductPrice($lineReport[6]);
+            $object->setId($lineReport[0]);
+            $object->setCustomerName($lineReport[1]);
+            $object->setProductName($lineReport[2]);
+            $object->setProductQuantity($lineReport[3]);
+            $object->setProductArticle($lineReport[4]);
+            $object->setProductWeight($lineReport[5]);
+            $object->setProductPrice($lineReport[6]);
+        } else {
+            $object = null;
         }
 
-        return $reportRecord;
+        return $object;
     }
 
     private function isFillReportLine(mixed $lineReport): bool
