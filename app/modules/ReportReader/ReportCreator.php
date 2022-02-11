@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportReader;
 
-class ReportCreatorRename implements ReportReaderInterface
+class ReportCreator implements ReportReaderInterface
 {
     private Report $report;
 
