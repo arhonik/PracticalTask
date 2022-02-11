@@ -4,11 +4,32 @@ namespace App\Modules\ReportReader;
 
 interface ReportLineInterface
 {
-    public function __set($name, $value);
+    public function setId(string $id);
 
-    public function __get($name);
+    public function getId(): string;
 
-    public function __isset($name);
+    public function setCustomerName(string $customerName): void;
 
-    public function __unset($name);
+    public function getCustomerName(): string;
+
+    public function setProductName(string $productName): void;
+
+    public function getProductName(): string;
+
+    public function setProductQuantity(string $productQuantity): void;
+
+    public function getProductQuantity(): string;
+
+    public function setProductArticle(string $productArticle): void;
+
+    public function getProductArticle(): string;
+
+    public function setProductWeight(string $productWeight): void;
+
+    public function getProductWeight(): string;
+
+    public function setProductPrice(string $productPrice): void;
+
+    public function getProductPrice(): string;
+
 }
