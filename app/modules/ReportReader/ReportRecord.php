@@ -14,18 +14,13 @@ class ReportRecord implements ReportLineInterface
 
     public function __construct(array $reportLine)
     {
-        $this->setId($reportLine[0]);
-        $this->setCustomerName($reportLine[1]);
-        $this->setProductName($reportLine[2]);
-        $this->setProductQuantity($reportLine[3]);
-        $this->setProductArticle($reportLine[4]);
-        $this->setProductWeight($reportLine[5]);
-        $this->setProductPrice($reportLine[6]);
-    }
-
-    public function setId(string $id): void
-    {
-        $this->id = $id;
+        $this->id = $reportLine[0];
+        $this->customerName = $reportLine[1];
+        $this->productName = $reportLine[2];
+        $this->productQuantity = $reportLine[3];
+        $this->productArticle = $reportLine[4];
+        $this->productWeight = $reportLine[5];
+        $this->productWeight = $reportLine[6];
     }
 
     public function getId(): string
@@ -33,19 +28,9 @@ class ReportRecord implements ReportLineInterface
         return $this->id;
     }
 
-    public function setCustomerName(string $customerName): void
-    {
-        $this->customerName = $customerName;
-    }
-
     public function getCustomerName(): string
     {
         return $this->customerName;
-    }
-
-    public function setProductName(string $productName): void
-    {
-        $this->productName = $productName;
     }
 
     public function getProductName(): string
@@ -53,19 +38,9 @@ class ReportRecord implements ReportLineInterface
         return $this->productName;
     }
 
-    public function setProductQuantity(string $productQuantity): void
-    {
-        $this->productQuantity = $productQuantity;
-    }
-
     public function getProductQuantity(): string
     {
         return $this->productQuantity;
-    }
-
-    public function setProductArticle(string $productArticle): void
-    {
-        $this->productArticle = $productArticle;
     }
 
     public function getProductArticle(): string
@@ -73,19 +48,9 @@ class ReportRecord implements ReportLineInterface
         return $this->productArticle;
     }
 
-    public function setProductWeight(string $productWeight): void
-    {
-        $this->productWeight = $productWeight;
-    }
-
     public function getProductWeight(): string
     {
         return $this->productWeight;
-    }
-
-    public function setProductPrice(string $productPrice): void
-    {
-        $this->productPrice = $productPrice;
     }
 
     public function getProductPrice(): string
