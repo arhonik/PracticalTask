@@ -4,28 +4,28 @@ namespace App\Modules\ReportCreator;
 
 class Report implements ReportReaderInterface
 {
-    private CSVFile $report;
+    private CSVFile $file;
 
     public function __construct($fullPathToReport)
     {
-        $this->report = new CSVFile($fullPathToReport);
+        $this->file = new CSVFile($fullPathToReport);
     }
 
     public function getHeader(): ?ReportLineInterface
     {
-        $this->report->ifNeedGoToHeaderFromBody();
+        $this->file->ifNeedGoToHeaderFromBody();
         return $this->createRecord();
     }
 
     public function getRecord(): ?ReportLineInterface
     {
-        $this->report->ifNeedGoToBodyFromHeader();
+        $this->file->ifNeedGoToBodyFromHeader();
         return $this->createRecord();
     }
 
     public function getChunk(int $numberOfLines): ?array
     {
-        $this->report->ifNeedGoToBodyFromHeader();
+        $this->file->ifNeedGoToBodyFromHeader();
         return $this->createAnArrayOfRecords($numberOfLines);
     }
 
@@ -44,7 +44,7 @@ class Report implements ReportReaderInterface
 
     private function createRecord(): ?ReportLineInterface
     {
-        if (!$this->report->isEnding()) {
+        if (!$this->file->isEnding()) {
             $emptyReportHeader = new ReportRecord();
             return $this->filingInObjectFromReportLine($emptyReportHeader);
         } else {
@@ -54,8 +54,8 @@ class Report implements ReportReaderInterface
 
     private function filingInObjectFromReportLine(ReportLineInterface $object): ?ReportLineInterface
     {
-        $reportLine = $this->report->getLine();
-        if ($this->report->isFillLine($reportLine)) {
+        $reportLine = $this->file->getLine();
+        if ($this->file->isFillLine($reportLine)) {
             $reportRecord = new ReportRecord($reportLine);
         } else {
             $reportRecord = null;
