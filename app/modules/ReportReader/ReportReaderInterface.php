@@ -4,9 +4,9 @@ namespace App\Modules\ReportReader;
 
 interface ReportReaderInterface
 {
-    public function getReportHeader(): ?ReportHeader;
+    public function getReportHeader(): ?ReportLineInterface;
 
-    public function getReportRecord(): ?ReportRecord;
+    public function getReportRecord(): ?ReportLineInterface;
 
     public function getReportChunk(int $numberOfLines): ?array;
 }

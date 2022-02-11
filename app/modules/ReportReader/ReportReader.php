@@ -34,7 +34,21 @@ class ReportReader implements ReportReaderInterface
     public function getReportRecord(): ?ReportRecord
     {
         $this->report->ifNeedGoToBodyFromHeader();
-        return $this->createReportRecord();
+        $reportLine = $this->report->getLine();
+        if ($this->isFillReportLine($reportLine)) {
+            $reportRecord = new ReportRecord();
+            $reportRecord->setId($reportLine[0]);
+            $reportRecord->setCustomerName($reportLine[1]);
+            $reportRecord->setProductName($reportLine[2]);
+            $reportRecord->setProductQuantity($reportLine[3]);
+            $reportRecord->setProductArticle($reportLine[4]);
+            $reportRecord->setProductWeight($reportLine[5]);
+            $reportRecord->setProductPrice($reportLine[6]);
+
+            return $reportRecord;
+        } else {
+            return null;
+        }
     }
 
     public function getReportChunk(int $numberOfLines): ?array
