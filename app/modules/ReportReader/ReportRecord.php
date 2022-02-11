@@ -76,7 +76,7 @@ class ReportRecord
     {
         $this->productPrice = $productPrice;
     }
- 
+
     public function getProductPrice(): string
     {
         return $this->productPrice;

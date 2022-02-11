@@ -11,7 +11,7 @@ class ReportReader implements ReportReaderInterface
         $this->report = new Report($fullPathToReport);
     }
 
-    public function getReportHeader(): ReportHeader
+    public function getReportHeader(): ?ReportHeader
     {
         $this->report->goToHeaders();
         return $this->createReportHeader();
@@ -42,10 +42,10 @@ class ReportReader implements ReportReaderInterface
         return $arrayReportRecord;
     }
 
-    private function createReportHeader(): ReportLineInterface
+    private function createReportHeader(): ?ReportLineInterface
     {
         $emptyReportHeader = new ReportHeader();
-        return $this->filingInObjectFromReportLine($emptyReportHeader);
+        return null;
     }
 
     private function createReportRecord(): ?ReportRecord
