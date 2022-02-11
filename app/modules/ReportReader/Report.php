@@ -30,7 +30,7 @@ class Report
         fclose($this->report);
     }
 
-    public function goToHeaders()
+    public function ifNeedGoToHeaderFromBody()
     {
         rewind($this->report);
     }
