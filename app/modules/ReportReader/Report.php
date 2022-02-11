@@ -94,6 +94,15 @@ class Report
         fgetcsv($this->report, 0, ';');
     }
 
+    public function isFillLine(mixed $lineReport): bool
+    {
+        if (is_array($lineReport) && count($lineReport) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function __destruct()
     {
         $this->closeReport();
