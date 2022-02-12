@@ -31,15 +31,15 @@ class Report implements ReportInterface
 
     private function createAnArrayOfRecords(int $numberOfLines): array
     {
-        $arrayReportRecord = array();
+        $arrayRecord = array();
         for ($i = 0; $i < $numberOfLines; $i++) {
-            $reportRecord = $this->createRecord();
-            if ($reportRecord) {
-                $arrayReportRecord[] = $reportRecord;
+            $record = $this->createRecord();
+            if ($record) {
+                $arrayRecord[] = $record;
             }
         }
 
-        return $arrayReportRecord;
+        return $arrayRecord;
     }
 
     private function createRecord(): ?ReportRecordInterface
