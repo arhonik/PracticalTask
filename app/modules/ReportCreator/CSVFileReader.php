@@ -9,14 +9,14 @@ class CSVFileReader
     public function __construct(string $fullPathToFile)
     {
         try {
-            $this->open($fullPathToFile);
+            $this->openFile($fullPathToFile);
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
         }
     }
 
-    private function open($fullPathToFile)
+    private function openFile($fullPathToFile)
     {
         if (file_exists($fullPathToFile)) {
             $this->file = fopen($fullPathToFile, 'rt');
