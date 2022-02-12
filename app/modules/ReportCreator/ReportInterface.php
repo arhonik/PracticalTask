@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-interface ReportReaderInterface
+interface ReportInterface
 {
     public function getHeader(): ?ReportLineInterface;
 

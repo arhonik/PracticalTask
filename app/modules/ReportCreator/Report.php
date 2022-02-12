@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-class Report implements ReportReaderInterface
+class Report implements ReportInterface
 {
     private CSVFile $file;
 

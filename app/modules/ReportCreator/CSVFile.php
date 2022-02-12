@@ -33,7 +33,8 @@ class CSVFile
     public function ifNeedGoToHeaderFromBody()
     {
         if (!$this->isBeginningFile()) {
-            if (!rewind($this->report)) {
+            $rewindControl = rewind($this->report);
+            if (!$rewindControl) {
                 throw new \Exception('File not available');
             }
         }
@@ -69,14 +70,13 @@ class CSVFile
         return ftell($this->report);
     }
 
-    public function getLine(): bool|array
+    public function getLine(): array
     {
         try {
             $reportLine = $this->getTheLineSafely();
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
-
         }
         return $reportLine;
     }
