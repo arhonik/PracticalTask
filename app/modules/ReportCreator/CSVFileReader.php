@@ -25,7 +25,7 @@ class CSVFileReader
         }
     }
 
-    private function close()
+    private function closeFile()
     {
         fclose($this->file);
     }
@@ -107,6 +107,6 @@ class CSVFileReader
 
     public function __destruct()
     {
-        $this->close();
+        $this->closeFile();
     }
 }
