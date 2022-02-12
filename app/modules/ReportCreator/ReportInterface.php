@@ -8,5 +8,5 @@ interface ReportInterface
 
     public function getRecord(): ?ReportRecordInterface;
 
-    public function getChunk(int $numberOfLines): ?array;
+    public function getChunk(int $numberOfRecords): ?array;
 }

@@ -23,16 +23,16 @@ class Report implements ReportInterface
         return $this->createRecord();
     }
 
-    public function getChunk(int $numberOfLines): ?array
+    public function getChunk(int $numberOfRecords): ?array
     {
         $this->file->ifNeedGoToBodyFromHeader();
-        return $this->createAnArrayOfRecords($numberOfLines);
+        return $this->createAnArrayOfRecords($numberOfRecords);
     }
 
-    private function createAnArrayOfRecords(int $numberOfLines): array
+    private function createAnArrayOfRecords(int $numberOfRecords): array
     {
         $arrayRecord = array();
-        for ($i = 0; $i < $numberOfLines; $i++) {
+        for ($i = 0; $i < $numberOfRecords; $i++) {
             $record = $this->createRecord();
             if ($record) {
                 $arrayRecord[] = $record;
