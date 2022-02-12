@@ -34,7 +34,7 @@ class Report implements ReportInterface
         $arrayRecord = array();
         for ($i = 0; $i < $numberOfRecords; $i++) {
             $record = $this->createRecord();
-            if ($record) {
+            if (!is_null($record)) {
                 $arrayRecord[] = $record;
             }
         }
