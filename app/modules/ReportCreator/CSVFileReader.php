@@ -9,14 +9,14 @@ class CSVFileReader
     public function __construct(string $fullPathToFile)
     {
         try {
-            $this->openFile($fullPathToFile);
+            $this->open($fullPathToFile);
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
         }
     }
 
-    private function openFile($fullPathToFile)
+    private function open($fullPathToFile)
     {
         if (file_exists($fullPathToFile)) {
             $this->file = fopen($fullPathToFile, 'rt');
@@ -25,14 +25,14 @@ class CSVFileReader
         }
     }
 
-    private function closeFile()
+    private function close()
     {
         fclose($this->file);
     }
 
     public function ifNeedGoToHeaderFromBody()
     {
-        if (!$this->isBeginningFile()) {
+        if (!$this->isBeginning()) {
             $rewindControl = rewind($this->file);
             if (!$rewindControl) {
                 throw new \Exception('File not available');
@@ -42,12 +42,12 @@ class CSVFileReader
 
     public function ifNeedGoToBodyFromHeader()
     {
-        if ($this->isBeginningFile()) {
-            $this->goToNextLineReport();
+        if ($this->isBeginning()) {
+            $this->goToNextLine();
         }
     }
 
-    private function isBeginningFile(): bool
+    private function isBeginning(): bool
     {
         if ($this->getPointerPosition() == 0) {
             return true;
@@ -91,7 +91,7 @@ class CSVFileReader
         return $reportLine;
     }
 
-    private function goToNextLineReport()
+    private function goToNextLine()
     {
         fgetcsv($this->file, 0, ';');
     }
@@ -107,6 +107,6 @@ class CSVFileReader
 
     public function __destruct()
     {
-        $this->closeFile();
+        $this->close();
     }
 }
