@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-class ReportRecord implements ReportLineInterface
+class ReportRecord implements ReportRecordInterface
 {
     private string $id;
     private string $customerName;

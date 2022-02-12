@@ -4,9 +4,9 @@ namespace App\Modules\ReportCreator;
 
 interface ReportInterface
 {
-    public function getHeader(): ?ReportLineInterface;
+    public function getHeader(): ?ReportRecordInterface;
 
-    public function getRecord(): ?ReportLineInterface;
+    public function getRecord(): ?ReportRecordInterface;
 
     public function getChunk(int $numberOfLines): ?array;
 }
