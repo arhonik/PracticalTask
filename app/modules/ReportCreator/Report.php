@@ -55,7 +55,7 @@ class Report implements ReportInterface
     {
         $fileLine = $this->file->getLine();
         if ($this->file->isFillLine($fileLine)) {
-            $record = new ReportRecord($fileLine);
+            $record = new Record($fileLine);
         } else {
             $record = null;
         }
