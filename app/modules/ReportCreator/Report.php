@@ -54,6 +54,7 @@ class Report implements ReportInterface
     private function filingInObjectFromReportLine(): ?RecordInterface
     {
         $fileLine = $this->file->getLine();
+        //TODO Take the isFillLine method to another level of abstraction
         if ($this->file->isFillLine($fileLine)) {
             $record = new Record($fileLine);
         } else {
