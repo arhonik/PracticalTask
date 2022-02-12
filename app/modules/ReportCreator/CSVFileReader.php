@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-class CSVFile
+class CSVFileReader
 {
     private mixed $file;
 
