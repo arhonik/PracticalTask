@@ -4,12 +4,12 @@ namespace App\Modules\ReportCreator;
 
 class CSVFile
 {
-    private mixed $report;
+    private mixed $file;
 
-    public function __construct($fullPathToReport)
+    public function __construct(string $fullPathToFile)
     {
         try {
-            $this->open($fullPathToReport);
+            $this->open($fullPathToFile);
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
@@ -19,7 +19,7 @@ class CSVFile
     private function open($fullPathToReport)
     {
         if (file_exists($fullPathToReport)) {
-            $this->report = fopen($fullPathToReport, 'rt');
+            $this->file = fopen($fullPathToReport, 'rt');
         } else {
             throw new \Exception('File not found');
         }
@@ -27,13 +27,13 @@ class CSVFile
 
     private function close()
     {
-        fclose($this->report);
+        fclose($this->file);
     }
 
     public function ifNeedGoToHeaderFromBody()
     {
         if (!$this->isBeginningFile()) {
-            $rewindControl = rewind($this->report);
+            $rewindControl = rewind($this->file);
             if (!$rewindControl) {
                 throw new \Exception('File not available');
             }
@@ -58,7 +58,7 @@ class CSVFile
 
     public function isEnding(): bool
     {
-        if (feof($this->report)) {
+        if (feof($this->file)) {
             return true;
         } else {
             return false;
@@ -67,7 +67,7 @@ class CSVFile
 
     public function getPointerPosition(): bool|int
     {
-        return ftell($this->report);
+        return ftell($this->file);
     }
 
     public function getLine(): array
@@ -83,7 +83,7 @@ class CSVFile
 
     private function getTheLineSafely(): array
     {
-        $reportLine = fgetcsv($this->report, 0, ';');
+        $reportLine = fgetcsv($this->file, 0, ';');
         if ($reportLine == false) {
             throw new \Exception('File not available');
         }
@@ -93,7 +93,7 @@ class CSVFile
 
     private function goToNextLineReport()
     {
-        fgetcsv($this->report, 0, ';');
+        fgetcsv($this->file, 0, ';');
     }
 
     public function isFillLine(mixed $lineReport): bool
