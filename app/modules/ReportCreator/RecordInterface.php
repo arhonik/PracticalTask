@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-interface ReportRecordInterface
+interface RecordInterface
 {
     public function getId(): string;
 

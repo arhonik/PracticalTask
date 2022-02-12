@@ -11,13 +11,13 @@ class Report implements ReportInterface
         $this->file = new CSVFile($fullPathToFile);
     }
 
-    public function getHeader(): ?ReportRecordInterface
+    public function getHeader(): ?RecordInterface
     {
         $this->file->ifNeedGoToHeaderFromBody();
         return $this->createRecord();
     }
 
-    public function getRecord(): ?ReportRecordInterface
+    public function getRecord(): ?RecordInterface
     {
         $this->file->ifNeedGoToBodyFromHeader();
         return $this->createRecord();
@@ -42,7 +42,7 @@ class Report implements ReportInterface
         return $arrayRecord;
     }
 
-    private function createRecord(): ?ReportRecordInterface
+    private function createRecord(): ?RecordInterface
     {
         if (!$this->file->isEnding()) {
             return $this->filingInObjectFromReportLine();
@@ -51,7 +51,7 @@ class Report implements ReportInterface
         }
     }
 
-    private function filingInObjectFromReportLine(): ?ReportRecordInterface
+    private function filingInObjectFromReportLine(): ?RecordInterface
     {
         $fileLine = $this->file->getLine();
         if ($this->file->isFillLine($fileLine)) {
