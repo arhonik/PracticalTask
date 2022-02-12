@@ -53,13 +53,13 @@ class Report implements ReportInterface
 
     private function filingInObjectFromReportLine(): ?ReportRecordInterface
     {
-        $reportLine = $this->file->getLine();
-        if ($this->file->isFillLine($reportLine)) {
-            $reportRecord = new ReportRecord($reportLine);
+        $fileLine = $this->file->getLine();
+        if ($this->file->isFillLine($fileLine)) {
+            $record = new ReportRecord($fileLine);
         } else {
-            $reportRecord = null;
+            $record = null;
         }
 
-        return $reportRecord;
+        return $record;
     }
 }
