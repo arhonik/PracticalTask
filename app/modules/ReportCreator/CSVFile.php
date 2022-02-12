@@ -16,10 +16,10 @@ class CSVFile
         }
     }
 
-    private function open($fullPathToReport)
+    private function open($fullPathToFile)
     {
-        if (file_exists($fullPathToReport)) {
-            $this->file = fopen($fullPathToReport, 'rt');
+        if (file_exists($fullPathToFile)) {
+            $this->file = fopen($fullPathToFile, 'rt');
         } else {
             throw new \Exception('File not found');
         }
