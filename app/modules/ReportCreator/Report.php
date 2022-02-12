@@ -6,9 +6,9 @@ class Report implements ReportInterface
 {
     private CSVFile $file;
 
-    public function __construct($fullPathToReport)
+    public function __construct(string $fullPathToFile)
     {
-        $this->file = new CSVFile($fullPathToReport);
+        $this->file = new CSVFile($fullPathToFile);
     }
 
     public function getHeader(): ?ReportLineInterface
