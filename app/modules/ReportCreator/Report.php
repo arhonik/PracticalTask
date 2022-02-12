@@ -45,14 +45,13 @@ class Report implements ReportReaderInterface
     private function createRecord(): ?ReportLineInterface
     {
         if (!$this->file->isEnding()) {
-            $emptyReportHeader = new ReportRecord();
-            return $this->filingInObjectFromReportLine($emptyReportHeader);
+            return $this->filingInObjectFromReportLine();
         } else {
             return null;
         }
     }
 
-    private function filingInObjectFromReportLine(ReportLineInterface $object): ?ReportLineInterface
+    private function filingInObjectFromReportLine(): ?ReportLineInterface
     {
         $reportLine = $this->file->getLine();
         if ($this->file->isFillLine($reportLine)) {
