@@ -4,28 +4,28 @@ namespace App\Modules\ReportCreator;
 
 class Report implements ReportInterface
 {
-    private CSVFileReader $file;
+    private CSVFileReader $fileReader;
 
     public function __construct(string $fullPathToFile)
     {
-        $this->file = new CSVFileReader($fullPathToFile);
+        $this->fileReader = new CSVFileReader($fullPathToFile);
     }
 
     public function getHeader(): ?RecordInterface
     {
-        $this->file->ifNeedGoToHeaderFromBody();
+        $this->fileReader->ifNeedGoToHeaderFromBody();
         return $this->createRecord();
     }
 
     public function getRecord(): ?RecordInterface
     {
-        $this->file->ifNeedGoToBodyFromHeader();
+        $this->fileReader->ifNeedGoToBodyFromHeader();
         return $this->createRecord();
     }
 
     public function getChunk(int $numberOfRecords): ?array
     {
-        $this->file->ifNeedGoToBodyFromHeader();
+        $this->fileReader->ifNeedGoToBodyFromHeader();
         return $this->createAnArrayOfRecords($numberOfRecords);
     }
 
@@ -44,7 +44,7 @@ class Report implements ReportInterface
 
     private function createRecord(): ?RecordInterface
     {
-        if (!$this->file->isEnding()) {
+        if (!$this->fileReader->isEnding()) {
             return $this->filingInObjectFromReportLine();
         } else {
             return null;
@@ -53,9 +53,9 @@ class Report implements ReportInterface
 
     private function filingInObjectFromReportLine(): ?RecordInterface
     {
-        $fileLine = $this->file->getLine();
+        $fileLine = $this->fileReader->getLine();
         //TODO Take the isFillLine method to another level of abstraction
-        if ($this->file->isFillLine($fileLine)) {
+        if ($this->fileReader->isFillLine($fileLine)) {
             $record = new Record($fileLine);
         } else {
             $record = null;
