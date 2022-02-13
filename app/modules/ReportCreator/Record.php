@@ -12,15 +12,29 @@ class Record implements RecordInterface
     private string $productWeight;
     private string $productPrice;
 
-    public function __construct(array $reportLine)
+    public function __construct(ColumnHeaders $columnHeaders, array $dataArray)
     {
-        $this->id = $reportLine[0];
-        $this->customerName = $reportLine[1];
-        $this->productName = $reportLine[2];
-        $this->productQuantity = $reportLine[3];
-        $this->productArticle = $reportLine[4];
-        $this->productWeight = $reportLine[5];
-        $this->productPrice = $reportLine[6];
+        $this->id = $dataArray[
+            $columnHeaders->getIdInfo()->getPosition()
+        ];
+        $this->customerName = $dataArray[
+            $columnHeaders->getCustomerNameInfo()->getPosition()
+        ];
+        $this->productName = $dataArray[
+            $columnHeaders->getProductNameInfo()->getPosition()
+        ];
+        $this->productQuantity = $dataArray[
+            $columnHeaders->getProductQuantityInfo()->getPosition()
+        ];
+        $this->productArticle = $dataArray[
+            $columnHeaders->getProductArticleInfo()->getPosition()
+        ];
+        $this->productWeight = $dataArray[
+            $columnHeaders->getProductWeightInfo()->getPosition()
+        ];
+        $this->productPrice = $dataArray[
+            $columnHeaders->getProductPriceInfo()->getPosition()
+        ];
     }
 
     public function getId(): string
