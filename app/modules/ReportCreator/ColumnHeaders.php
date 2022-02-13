@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-class ColumnHeaders
+class ColumnHeaders implements ColumnHeadersInterface
 {
     private HeaderInfo $idInfo;
     private HeaderInfo $customerNameInfo;
