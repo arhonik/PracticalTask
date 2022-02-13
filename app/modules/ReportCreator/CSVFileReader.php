@@ -54,7 +54,7 @@ class CSVFileReader
     public function ifNeedGoToBodyFromHeader()
     {
         if ($this->isBeginning()) {
-            $this->goToNextLine();
+            $this->goToNextRow();
         }
     }
 
@@ -79,7 +79,7 @@ class CSVFileReader
     public function getPointerPosition(): int
     {
         try {
-            $position = $this->getPointerPositionSafely();
+            $position = $this->tryGetPointerPosition();
         } catch (\Exception $e) {
             throw new \Exception('File not available');
         }
@@ -87,7 +87,7 @@ class CSVFileReader
         return $position;
     }
 
-    private function getPointerPositionSafely(): int
+    private function tryGetPointerPosition(): int
     {
         $position = ftell($this->file);
         if ($position === false) {
@@ -97,10 +97,10 @@ class CSVFileReader
         return $position;
     }
 
-    public function getLine(): array
+    public function getRow(): array
     {
         try {
-            $reportLine = $this->getTheLineSafely();
+            $reportLine = $this->tryGetTheRow();
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
             exit();
@@ -108,7 +108,7 @@ class CSVFileReader
         return $reportLine;
     }
 
-    private function getTheLineSafely(): array
+    private function tryGetTheRow(): array
     {
         $reportLine = fgetcsv($this->file, 0, ';');
         if ($reportLine === false) {
@@ -118,16 +118,16 @@ class CSVFileReader
         return $reportLine;
     }
 
-    private function goToNextLine()
+    private function goToNextRow()
     {
         try {
-            $this->goToNextLineSafely();
+            $this->tryGoToNextRow();
         } catch (\Exception $e) {
             throw new \Exception('File not available');
         }
     }
 
-    private function goToNextLineSafely()
+    private function tryGoToNextRow()
     {
         $reportLine = fgetcsv($this->file, 0, ';');
         if ($reportLine === false) {
@@ -135,7 +135,7 @@ class CSVFileReader
         }
     }
 
-    public function isFillLine(mixed $lineReport): bool
+    public function isArrayWithData(mixed $lineReport): bool
     {
         if (is_array($lineReport) && count($lineReport) > 0) {
             return true;
