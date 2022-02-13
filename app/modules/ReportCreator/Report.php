@@ -5,16 +5,18 @@ namespace App\Modules\ReportCreator;
 class Report implements ReportInterface
 {
     private CSVFileReader $fileReader;
+    private ColumnHeaders $headers;
 
     public function __construct(string $fullPathToFile)
     {
         $this->fileReader = new CSVFileReader($fullPathToFile);
+        $this->headers = $this->getHeaders();
     }
 
     public function getHeaders(): ?ColumnHeaders
     {
         $this->fileReader->ifNeedGoToHeaderFromBody();
-        return $this->createRecord();
+        return $this->createHeader();
     }
 
     public function getRecord(): ?RecordInterface
@@ -40,6 +42,19 @@ class Report implements ReportInterface
         }
 
         return $arrayRecord;
+    }
+
+    private function createHeader(): ?ColumnHeaders
+    {
+        $fileLine = $this->fileReader->getRow();
+        //TODO Take the isArrayWithData method to another level of abstraction
+        if ($this->fileReader->isArrayWithData($fileLine)) {
+            $record = new ColumnHeaders($fileLine);
+        } else {
+            $record = null;
+        }
+
+        return $record;
     }
 
     private function createRecord(): ?RecordInterface
