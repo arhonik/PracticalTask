@@ -11,7 +11,7 @@ class Report implements ReportInterface
         $this->fileReader = new CSVFileReader($fullPathToFile);
     }
 
-    public function getHeader(): ?RecordInterface
+    public function getHeaders(): ?ColumnHeaders
     {
         $this->fileReader->ifNeedGoToHeaderFromBody();
         return $this->createRecord();
@@ -53,10 +53,10 @@ class Report implements ReportInterface
 
     private function filingInObjectFromReportLine(): ?RecordInterface
     {
-        $fileLine = $this->fileReader->getLine();
-        //TODO Take the isFillLine method to another level of abstraction
-        if ($this->fileReader->isFillLine($fileLine)) {
-            $record = new Record($fileLine);
+        $fileLine = $this->fileReader->getRow();
+        //TODO Take the isArrayWithData method to another level of abstraction
+        if ($this->fileReader->isArrayWithData($fileLine)) {
+            $record = new Record($this->headers, $fileLine);
         } else {
             $record = null;
         }

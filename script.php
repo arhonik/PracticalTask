@@ -4,7 +4,7 @@ require_once __DIR__.'/autoload.php';
 
 $fullPathToFile = __DIR__ . '/resource/sales_data.csv';
 $report = new \App\Modules\ReportCreator\Report($fullPathToFile);
-$header = $report->getHeader();
+$header = $report->getHeaders();
 while ($data = $report->getRecord()) {
     //process report data
 }

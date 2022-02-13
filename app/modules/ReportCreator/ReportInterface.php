@@ -4,7 +4,7 @@ namespace App\Modules\ReportCreator;
 
 interface ReportInterface
 {
-    public function getHeader(): ?RecordInterface;
+    public function getHeaders(): ?ColumnHeaders;
 
     public function getRecord(): ?RecordInterface;
 
