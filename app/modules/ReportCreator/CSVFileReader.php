@@ -27,16 +27,27 @@ class CSVFileReader
 
     private function close()
     {
-        fclose($this->file);
+        if (!fclose($this->file)) {
+            throw new \Exception('File not available');
+        }
     }
 
     public function ifNeedGoToHeaderFromBody()
     {
         if (!$this->isBeginning()) {
-            $rewindControl = rewind($this->file);
-            if (!$rewindControl) {
+            try {
+                $this->rewindPosition();
+            } catch (\Exception $e) {
                 throw new \Exception('File not available');
             }
+        }
+    }
+
+    private function rewindPosition()
+    {
+        $rewindControl = rewind($this->file);
+        if ($rewindControl === false) {
+            throw new \Exception('File not available');
         }
     }
 
@@ -65,9 +76,25 @@ class CSVFileReader
         }
     }
 
-    public function getPointerPosition(): bool|int
+    public function getPointerPosition(): int
     {
-        return ftell($this->file);
+        try {
+            $position = $this->getPointerPositionSafely();
+        } catch (\Exception $e) {
+            throw new \Exception('File not available');
+        }
+
+        return $position;
+    }
+
+    private function getPointerPositionSafely(): int
+    {
+        $position = ftell($this->file);
+        if ($position === false) {
+            throw new \Exception('File not available');
+        }
+
+        return $position;
     }
 
     public function getLine(): array
@@ -84,7 +111,7 @@ class CSVFileReader
     private function getTheLineSafely(): array
     {
         $reportLine = fgetcsv($this->file, 0, ';');
-        if ($reportLine == false) {
+        if ($reportLine === false) {
             throw new \Exception('File not available');
         }
 
@@ -93,7 +120,19 @@ class CSVFileReader
 
     private function goToNextLine()
     {
-        fgetcsv($this->file, 0, ';');
+        try {
+            $this->goToNextLineSafely();
+        } catch (\Exception $e) {
+            throw new \Exception('File not available');
+        }
+    }
+
+    private function goToNextLineSafely()
+    {
+        $reportLine = fgetcsv($this->file, 0, ';');
+        if ($reportLine === false) {
+            throw new \Exception('File not available');
+        }
     }
 
     public function isFillLine(mixed $lineReport): bool
@@ -107,6 +146,10 @@ class CSVFileReader
 
     public function __destruct()
     {
-        $this->close();
+        try {
+            $this->close();
+        } catch (\Exception $e) {
+            echo 'Exceptions caught: ' . $e->getMessage();
+        }
     }
 }
