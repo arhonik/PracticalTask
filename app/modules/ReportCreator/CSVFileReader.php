@@ -38,7 +38,8 @@ class CSVFileReader
             try {
                 $this->rewindPosition();
             } catch (\Exception $e) {
-                throw new \Exception('File not available');
+                echo 'Exceptions caught: ' . $e->getMessage();
+                exit();
             }
         }
     }
@@ -54,7 +55,12 @@ class CSVFileReader
     public function ifNeedGoToBodyFromHeader()
     {
         if ($this->isBeginning()) {
-            $this->goToNextRow();
+            try {
+                $this->goToNextRow();
+            } catch (\Exception $e) {
+                echo 'Exceptions caught: ' . $e->getMessage();
+                exit();
+            }
         }
     }
 
@@ -81,7 +87,8 @@ class CSVFileReader
         try {
             $position = $this->tryGetPointerPosition();
         } catch (\Exception $e) {
-            throw new \Exception('File not available');
+            echo 'Exceptions caught: ' . $e->getMessage();
+            exit();
         }
 
         return $position;
@@ -102,8 +109,6 @@ class CSVFileReader
         try {
             $reportLine = $this->tryGetTheRow();
         } catch (\Exception $e) {
-            echo 'Exceptions caught: ' . $e->getMessage();
-            exit();
         }
         return $reportLine;
     }
@@ -119,15 +124,6 @@ class CSVFileReader
     }
 
     private function goToNextRow()
-    {
-        try {
-            $this->tryGoToNextRow();
-        } catch (\Exception $e) {
-            throw new \Exception('File not available');
-        }
-    }
-
-    private function tryGoToNextRow()
     {
         $reportLine = fgetcsv($this->file, 0, ';');
         if ($reportLine === false) {
@@ -150,6 +146,7 @@ class CSVFileReader
             $this->close();
         } catch (\Exception $e) {
             echo 'Exceptions caught: ' . $e->getMessage();
+            exit();
         }
     }
 }
