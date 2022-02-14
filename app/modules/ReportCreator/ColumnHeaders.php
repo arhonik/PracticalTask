@@ -4,75 +4,75 @@ namespace App\Modules\ReportCreator;
 
 class ColumnHeaders implements ColumnHeadersInterface
 {
-    private HeaderInfo $idInfo;
-    private HeaderInfo $customerNameInfo;
-    private HeaderInfo $productNameInfo;
-    private HeaderInfo $productQuantityInfo;
-    private HeaderInfo $productArticleInfo;
-    private HeaderInfo $productWeightInfo;
-    private HeaderInfo $productPriceInfo;
+    private HeaderData $idData;
+    private HeaderData $customerNameData;
+    private HeaderData $productNameData;
+    private HeaderData $productQuantityData;
+    private HeaderData $productArticleData;
+    private HeaderData $productWeightData;
+    private HeaderData $productPriceData;
 
     public function __construct(array $row)
     {
         foreach ($row as $position => $title) {
             switch ($title) {
                 case ColumnName::ID:
-                    $this->idInfo = new HeaderInfo($title, $position);
+                    $this->idData = new HeaderData($title, $position);
                     break;
                 case ColumnName::CUSTOMER_NAME:
-                    $this->customerNameInfo = new HeaderInfo($title, $position);
+                    $this->customerNameData = new HeaderData($title, $position);
                     break;
                 case ColumnName::PRODUCT_NAME:
-                    $this->productNameInfo = new HeaderInfo($title, $position);
+                    $this->productNameData = new HeaderData($title, $position);
                     break;
                 case ColumnName::PRODUCT_QUANTITY:
-                    $this->productQuantityInfo = new HeaderInfo($title, $position);
+                    $this->productQuantityData = new HeaderData($title, $position);
                     break;
                 case ColumnName::PRODUCT_ARTICLE:
-                    $this->productArticleInfo = new HeaderInfo($title, $position);
+                    $this->productArticleData = new HeaderData($title, $position);
                     break;
                 case ColumnName::PRODUCT_WEIGHT:
-                    $this->productWeightInfo = new HeaderInfo($title, $position);
+                    $this->productWeightData = new HeaderData($title, $position);
                     break;
                 case ColumnName::PRODUCT_PRICE:
-                    $this->productPriceInfo = new HeaderInfo($title, $position);
+                    $this->productPriceData = new HeaderData($title, $position);
                     break;
             }
         }
     }
 
-    public function getIdInfo(): HeaderInfo
+    public function getIdData(): HeaderData
     {
-        return $this->idInfo;
+        return $this->idData;
     }
 
-    public function getCustomerNameInfo(): HeaderInfo
+    public function getCustomerNameData(): HeaderData
     {
-        return $this->customerNameInfo;
+        return $this->customerNameData;
     }
 
-    public function getProductNameInfo(): HeaderInfo
+    public function getProductNameData(): HeaderData
     {
-        return $this->productNameInfo;
+        return $this->productNameData;
     }
 
-    public function getProductQuantityInfo(): HeaderInfo
+    public function getProductQuantityData(): HeaderData
     {
-        return $this->productQuantityInfo;
+        return $this->productQuantityData;
     }
 
-    public function getProductArticleInfo(): HeaderInfo
+    public function getProductArticleData(): HeaderData
     {
-        return $this->productArticleInfo;
+        return $this->productArticleData;
     }
 
-    public function getProductWeightInfo(): HeaderInfo
+    public function getProductWeightData(): HeaderData
     {
-        return $this->productWeightInfo;
+        return $this->productWeightData;
     }
 
-    public function getProductPriceInfo(): HeaderInfo
+    public function getProductPriceData(): HeaderData
     {
-        return $this->productPriceInfo;
+        return $this->productPriceData;
     }
 }

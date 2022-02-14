@@ -4,17 +4,17 @@ namespace App\Modules\ReportCreator;
 
 interface ColumnHeadersInterface
 {
-    public function getIdInfo(): HeaderInfo;
+    public function getIdData(): HeaderData;
 
-    public function getCustomerNameInfo(): HeaderInfo;
+    public function getCustomerNameData(): HeaderData;
 
-    public function getProductNameInfo(): HeaderInfo;
+    public function getProductNameData(): HeaderData;
 
-    public function getProductQuantityInfo(): HeaderInfo;
+    public function getProductQuantityData(): HeaderData;
 
-    public function getProductArticleInfo(): HeaderInfo;
+    public function getProductArticleData(): HeaderData;
 
-    public function getProductWeightInfo(): HeaderInfo;
+    public function getProductWeightData(): HeaderData;
 
-    public function getProductPriceInfo(): HeaderInfo;
+    public function getProductPriceData(): HeaderData;
 }

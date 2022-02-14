@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-class HeaderInfo implements HeaderInfoInterface
+class HeaderData implements HeaderDataInterface
 {
     private string $name;
     private int $position;

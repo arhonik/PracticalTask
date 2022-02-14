@@ -2,7 +2,7 @@
 
 namespace App\Modules\ReportCreator;
 
-interface HeaderInfoInterface
+interface HeaderDataInterface
 {
     public function getName(): string;
 

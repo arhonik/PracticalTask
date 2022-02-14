@@ -15,25 +15,25 @@ class Record implements RecordInterface
     public function __construct(ColumnHeaders $columnHeaders, array $dataArray)
     {
         $this->id = $dataArray[
-            $columnHeaders->getIdInfo()->getPosition()
+            $columnHeaders->getIdData()->getPosition()
         ];
         $this->customerName = $dataArray[
-            $columnHeaders->getCustomerNameInfo()->getPosition()
+            $columnHeaders->getCustomerNameData()->getPosition()
         ];
         $this->productName = $dataArray[
-            $columnHeaders->getProductNameInfo()->getPosition()
+            $columnHeaders->getProductNameData()->getPosition()
         ];
         $this->productQuantity = $dataArray[
-            $columnHeaders->getProductQuantityInfo()->getPosition()
+            $columnHeaders->getProductQuantityData()->getPosition()
         ];
         $this->productArticle = $dataArray[
-            $columnHeaders->getProductArticleInfo()->getPosition()
+            $columnHeaders->getProductArticleData()->getPosition()
         ];
         $this->productWeight = $dataArray[
-            $columnHeaders->getProductWeightInfo()->getPosition()
+            $columnHeaders->getProductWeightData()->getPosition()
         ];
         $this->productPrice = $dataArray[
-            $columnHeaders->getProductPriceInfo()->getPosition()
+            $columnHeaders->getProductPriceData()->getPosition()
         ];
     }
 
