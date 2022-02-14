@@ -46,10 +46,9 @@ class Report implements ReportInterface
 
     private function createHeader(): ?ColumnHeaders
     {
-        $fileLine = $this->fileReader->getRow();
-        //TODO Take the isArrayWithData method to another level of abstraction
-        if ($this->fileReader->isArrayWithData($fileLine)) {
-            $record = new ColumnHeaders($fileLine);
+        $row = $this->fileReader->getRow();
+        if (ArrayAnalyzer::isArrayWithData($row)) {
+            $record = new ColumnHeaders($row);
         } else {
             $record = null;
         }
@@ -68,10 +67,9 @@ class Report implements ReportInterface
 
     private function filingInObjectFromReportLine(): ?RecordInterface
     {
-        $fileLine = $this->fileReader->getRow();
-        //TODO Take the isArrayWithData method to another level of abstraction
-        if ($this->fileReader->isArrayWithData($fileLine)) {
-            $record = new Record($this->headers, $fileLine);
+        $row = $this->fileReader->getRow();
+        if (ArrayAnalyzer::isArrayWithData($row)) {
+            $record = new Record($this->headers, $row);
         } else {
             $record = null;
         }
