@@ -4,13 +4,13 @@ namespace App\Modules\ReportCreator;
 
 class ColumnHeaders implements ColumnHeadersInterface
 {
-    private HeaderData $idData;
-    private HeaderData $customerNameData;
-    private HeaderData $productNameData;
-    private HeaderData $productQuantityData;
-    private HeaderData $productArticleData;
-    private HeaderData $productWeightData;
-    private HeaderData $productPriceData;
+    private ?HeaderData $idData = null;
+    private ?HeaderData $customerNameData = null;
+    private ?HeaderData $productNameData = null;
+    private ?HeaderData $productQuantityData = null;
+    private ?HeaderData $productArticleData = null;
+    private ?HeaderData $productWeightData = null;
+    private ?HeaderData $productPriceData = null;
 
     public function __construct(array $row)
     {
@@ -41,37 +41,37 @@ class ColumnHeaders implements ColumnHeadersInterface
         }
     }
 
-    public function getIdData(): HeaderData
+    public function getIdData(): ?HeaderData
     {
         return $this->idData;
     }
 
-    public function getCustomerNameData(): HeaderData
+    public function getCustomerNameData(): ?HeaderData
     {
         return $this->customerNameData;
     }
 
-    public function getProductNameData(): HeaderData
+    public function getProductNameData(): ?HeaderData
     {
         return $this->productNameData;
     }
 
-    public function getProductQuantityData(): HeaderData
+    public function getProductQuantityData(): ?HeaderData
     {
         return $this->productQuantityData;
     }
 
-    public function getProductArticleData(): HeaderData
+    public function getProductArticleData(): ?HeaderData
     {
         return $this->productArticleData;
     }
 
-    public function getProductWeightData(): HeaderData
+    public function getProductWeightData(): ?HeaderData
     {
         return $this->productWeightData;
     }
 
-    public function getProductPriceData(): HeaderData
+    public function getProductPriceData(): ?HeaderData
     {
         return $this->productPriceData;
     }
