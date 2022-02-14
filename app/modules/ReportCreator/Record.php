@@ -4,19 +4,21 @@ namespace App\Modules\ReportCreator;
 
 class Record implements RecordInterface
 {
-    private string $id;
-    private string $customerName;
-    private string $productName;
-    private string $productQuantity;
-    private string $productArticle;
-    private string $productWeight;
-    private string $productPrice;
+    private ?string $id = null;
+    private ?string $customerName = null;
+    private ?string $productName = null;
+    private ?string $productQuantity = null;
+    private ?string $productArticle = null;
+    private ?string $productWeight = null;
+    private ?string $productPrice = null;
 
     public function __construct(ColumnHeaders $columnHeaders, array $dataArray)
     {
-        $this->id = $dataArray[
+        if (is_int($columnHeaders->getIdData()->getPosition())) {
+            $this->id = $dataArray[
             $columnHeaders->getIdData()->getPosition()
-        ];
+            ];
+        }
         $this->customerName = $dataArray[
             $columnHeaders->getCustomerNameData()->getPosition()
         ];
@@ -32,42 +34,44 @@ class Record implements RecordInterface
         $this->productWeight = $dataArray[
             $columnHeaders->getProductWeightData()->getPosition()
         ];
-        $this->productPrice = $dataArray[
+        if ($columnHeaders->getProductPriceData()) {
+            $this->productPrice = $dataArray[
             $columnHeaders->getProductPriceData()->getPosition()
-        ];
+            ];
+        }
     }
 
-    public function getId(): string
+    public function getId(): ?string
     {
         return $this->id;
     }
 
-    public function getCustomerName(): string
+    public function getCustomerName(): ?string
     {
         return $this->customerName;
     }
 
-    public function getProductName(): string
+    public function getProductName(): ?string
     {
         return $this->productName;
     }
 
-    public function getProductQuantity(): string
+    public function getProductQuantity(): ?string
     {
         return $this->productQuantity;
     }
 
-    public function getProductArticle(): string
+    public function getProductArticle(): ?string
     {
         return $this->productArticle;
     }
 
-    public function getProductWeight(): string
+    public function getProductWeight(): ?string
     {
         return $this->productWeight;
     }
 
-    public function getProductPrice(): string
+    public function getProductPrice(): ?string
     {
         return $this->productPrice;
     }
