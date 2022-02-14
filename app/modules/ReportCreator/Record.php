@@ -4,7 +4,7 @@ namespace App\Modules\ReportCreator;
 
 class Record implements RecordInterface
 {
-    private ?string $id = null;
+    private ?int $id = null;
     private ?string $customerName = null;
     private ?string $productName = null;
     private ?string $productQuantity = null;
@@ -15,7 +15,7 @@ class Record implements RecordInterface
     public function __construct(ColumnHeaders $columnHeaders, array $dataArray)
     {
         if (!is_null($columnHeaders->getIdData()->getPosition())) {
-            $this->id = $dataArray[
+            $this->id = (int) $dataArray[
                 $columnHeaders->getIdData()->getPosition()
             ];
         }
@@ -54,7 +54,7 @@ class Record implements RecordInterface
         }
     }
 
-    public function getId(): ?string
+    public function getId(): ?int
     {
         return $this->id;
     }

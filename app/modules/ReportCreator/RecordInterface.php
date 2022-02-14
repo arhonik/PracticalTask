@@ -4,7 +4,7 @@ namespace App\Modules\ReportCreator;
 
 interface RecordInterface
 {
-    public function getId(): ?string;
+    public function getId(): ?int;
 
     public function getCustomerName(): ?string;
 
