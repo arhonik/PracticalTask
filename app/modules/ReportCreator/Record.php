@@ -14,29 +14,42 @@ class Record implements RecordInterface
 
     public function __construct(ColumnHeaders $columnHeaders, array $dataArray)
     {
-        if (is_int($columnHeaders->getIdData()->getPosition())) {
+        if (!is_null($columnHeaders->getIdData()->getPosition())) {
             $this->id = $dataArray[
-            $columnHeaders->getIdData()->getPosition()
+                $columnHeaders->getIdData()->getPosition()
             ];
         }
-        $this->customerName = $dataArray[
-            $columnHeaders->getCustomerNameData()->getPosition()
-        ];
-        $this->productName = $dataArray[
-            $columnHeaders->getProductNameData()->getPosition()
-        ];
-        $this->productQuantity = $dataArray[
-            $columnHeaders->getProductQuantityData()->getPosition()
-        ];
-        $this->productArticle = $dataArray[
-            $columnHeaders->getProductArticleData()->getPosition()
-        ];
-        $this->productWeight = $dataArray[
-            $columnHeaders->getProductWeightData()->getPosition()
-        ];
-        if ($columnHeaders->getProductPriceData()) {
+        if (!is_null($columnHeaders->getCustomerNameData())) {
+            $this->customerName = $dataArray[
+                $columnHeaders->getCustomerNameData()->getPosition()
+            ];
+        }
+        if (!is_null($columnHeaders->getProductNameData())) {
+            $this->productName = $dataArray[
+                $columnHeaders->getProductNameData()->getPosition()
+            ];
+        }
+        if (!is_null($columnHeaders->getProductQuantityData())) {
+            $this->productQuantity = $dataArray[
+                $columnHeaders->getProductQuantityData()->getPosition()
+            ];
+
+        }
+        if (!is_null($columnHeaders->getProductArticleData())) {
+            $this->productArticle = $dataArray[
+                $columnHeaders->getProductArticleData()->getPosition()
+            ];
+
+        }
+        if (!is_null($columnHeaders->getProductWeightData())) {
+            $this->productWeight = $dataArray[
+                $columnHeaders->getProductWeightData()->getPosition()
+            ];
+
+        }
+        if (!is_null($columnHeaders->getProductPriceData())) {
             $this->productPrice = $dataArray[
-            $columnHeaders->getProductPriceData()->getPosition()
+                $columnHeaders->getProductPriceData()->getPosition()
             ];
         }
     }
