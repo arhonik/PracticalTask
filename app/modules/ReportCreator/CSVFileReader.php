@@ -131,15 +131,6 @@ class CSVFileReader
         }
     }
 
-    public function isArrayWithData(mixed $lineReport): bool
-    {
-        if (is_array($lineReport) && count($lineReport) > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public function __destruct()
     {
         try {
